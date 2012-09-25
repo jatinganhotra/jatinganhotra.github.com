@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install MongoDB on Ubuntu - blog@silverSpoon</title>
+  <meta name="author" content="Jatin Ganhotra">
+
+  
+  <meta name="description" content="$(function() { var $j = jQuery.noConflict(); $j('#st-accordion').accordion({ oneOpenedItem : true }); }); There are multiple ways to install MongoDB &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="blog@silverSpoon" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28360121-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">blog@silverSpoon</a></h1>
+  
+    <h2>render :object => Experience.new</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:silverSpoon.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Install MongoDB on Ubuntu</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T01:33:00+05:30" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+<script src="/javascripts/jquery.accordion.js"></script>
+
+
+<script src="/javascripts/jquery.easing.1.3.js"></script>
+
+
+<script type="text/javascript">
+  $(function() {            
+    var $j = jQuery.noConflict();
+    $j('#st-accordion').accordion({
+      oneOpenedItem : true
+    });
+  });
+</script>
+
+
+
+
+<div class="container">
+There are multiple ways to install MongoDB on Ubuntu (I have got Ubuntu 11.10 setup on my machine).
+<div class="wrapper">
+    <div id="st-accordion" class="st-accordion">
+    <ul>
+      <li>
+    <a href="#">the mongodb package in Debian/Ubuntu<span class="st-arrow">Open or Close</span></a>
+    <div class="st-content">
+        On running
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-cache show mongodb</span></code></pre></td></tr></table></div></figure>
+
+        it will print out a lot of information about the package like
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Package: mongodb
+</span><span class='line'>Architecture: i386
+</span><span class='line'>Version: 1:1.8.2-1ubuntu1
+</span><span class='line'>Depends: mongodb-server, mongodb-dev
+</span><span class='line'>Filename: pool/universe/m/mongodb/mongodb_1.8.2-1ubuntu1_i386.deb</span></code></pre></td></tr></table></div></figure>
+        If you carefully notice, the version is outdated. If you wish to install it, run
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mongodb</span></code></pre></td></tr></table></div></figure>
+
+        and mongodb will be installed for you alongwith<br/><em>libmozjs185-1.0 mongodb-clients mongodb-dev mongodb-server</em>
+        </div>
+    </li>
+    <li>
+        <a href="#">the mongodb-10gen package by 10gen<span class="st-arrow">Open or Close</span></a>
+        <div class="st-content">
+
+        To install the mongodb-10gen package, corresponding to the latest stable release, follow the instructions as follows:<br/>
+        
+        + Add the GPG key:
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10</span></code></pre></td></tr></table></div></figure>
+
+
+        + Add this line verbatim to your <strong>/etc/apt/sources.list</strong>
+<figure class='code'><figcaption><span>/etc/apt/sources.list</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># if you are on older Ubuntus</span>
+</span><span class='line'><span class="n">deb</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">downloads</span><span class="o">-</span><span class="n">distro</span><span class="o">.</span><span class="n">mongodb</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">sysvinit</span> <span class="n">dist</span> <span class="mi">10</span><span class="n">gen</span>
+</span><span class='line'><span class="c1"># On new Ubuntus, add this</span>
+</span><span class='line'><span class="n">deb</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">downloads</span><span class="o">-</span><span class="n">distro</span><span class="o">.</span><span class="n">mongodb</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="n">upstart</span> <span class="n">dist</span> <span class="mi">10</span><span class="n">gen</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        + Update the sources
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get update</span></code></pre></td></tr></table></div></figure>
+
+
+        + Install the desired package(latest stable or latest development release)
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mongodb-10gen</span></code></pre></td></tr></table></div></figure>
+
+            
+        For more detailed guide on this, refer to <a href="http://www.mongodb.org/display/DOCS/Ubuntu+and+Debian+packages">MongoDB guide for Ubuntu and Debian packages</a>
+
+        </div>
+    </li>
+        <li>
+      <a href="#">Unix binaries<span class="st-arrow">Open or Close</span></a>
+      <div class="st-content">
+32-bit
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span> <span class="err">#</span> <span class="nx">replace</span> <span class="s2">&quot;2.0.1&quot;</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">url</span> <span class="nx">below</span> <span class="kd">with</span> <span class="nx">the</span> <span class="nx">version</span> <span class="nx">you</span> <span class="nx">want</span>
+</span><span class='line'><span class="nx">$</span> <span class="nx">curl</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//downloads.mongodb.org/linux/mongodb-linux-i686-2.0.1.tgz &gt; mongo.tgz</span>
+</span><span class='line'><span class="nx">$</span> <span class="nx">tar</span> <span class="nx">xzf</span> <span class="nx">mongo</span><span class="p">.</span><span class="nx">tgz</span>
+</span></code></pre></td></tr></table></div></figure>
+64-bit
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span> <span class="err">#</span> <span class="nx">replace</span> <span class="s2">&quot;2.0.1&quot;</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">url</span> <span class="nx">below</span> <span class="kd">with</span> <span class="nx">the</span> <span class="nx">version</span> <span class="nx">you</span> <span class="nx">want</span>
+</span><span class='line'><span class="nx">$</span> <span class="nx">curl</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//downloads.mongodb.org/linux/mongodb-linux-x86_64-2.0.1.tgz &gt; mongo.tgz</span>
+</span><span class='line'><span class="nx">$</span> <span class="nx">tar</span> <span class="nx">xzf</span> <span class="nx">mongo</span><span class="p">.</span><span class="nx">tgz</span>
+</span></code></pre></td></tr></table></div></figure>          
+      </div>
+    </li>
+        <li>
+      <a href="#">Building from source<span class="st-arrow">Open or Close</span></a>
+      <div class="st-content">
+        + Install prerequisites
+        For Ubuntu 10.04+ :<br/>
+        (For older versions, refer <a href="http://www.mongodb.org/display/DOCS/Building+for+Linux"> MongoDB guide for building from source </a> )
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="o">-</span><span class="nx">y</span> <span class="nx">install</span> <span class="nx">tcsh</span> <span class="nx">git</span><span class="o">-</span><span class="nx">core</span> <span class="nx">scons</span> <span class="nx">g</span><span class="o">++</span>
+</span><span class='line'><span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="o">-</span><span class="nx">y</span> <span class="nx">install</span> <span class="nx">libpcre</span><span class="o">++-</span><span class="nx">dev</span> <span class="nx">libboost</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">libreadline</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">xulrunner</span><span class="o">-</span><span class="mf">1.9</span><span class="p">.</span><span class="mi">2</span><span class="o">-</span><span class="nx">dev</span>
+</span><span class='line'><span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="o">-</span><span class="nx">y</span> <span class="nx">install</span> <span class="nx">libboost</span><span class="o">-</span><span class="nx">program</span><span class="o">-</span><span class="nx">options</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">libboost</span><span class="o">-</span><span class="nx">thread</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">libboost</span><span class="o">-</span><span class="nx">filesystem</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">libboost</span><span class="o">-</span><span class="nx">date</span><span class="o">-</span><span class="nx">time</span><span class="o">-</span><span class="nx">dev</span>
+</span></code></pre></td></tr></table></div></figure>
+        + Get source
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">git</span> <span class="nx">clone</span> <span class="nx">git</span><span class="o">:</span><span class="c1">//github.com/mongodb/mongo.git &amp;&amp; cd mongo</span>
+</span><span class='line'><span class="nx">git</span> <span class="nx">tag</span> <span class="o">-</span><span class="nx">l</span>
+</span><span class='line'><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">r2</span><span class="p">.</span><span class="mf">0.0</span>
+</span></code></pre></td></tr></table></div></figure>
+        + Build
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>scons all</span></code></pre></td></tr></table></div></figure>
+
+        + Install &#8211;prefix can be anywhere you want to contain your binaries e.g. /usr/local or /opt/mongo.
+        
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>scons --prefix=/opt/mongo install</span></code></pre></td></tr></table></div></figure>
+
+    </div>
+  </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div>
+<style type="text/css">
+a{color:#000;text-decoration:none;}.wrapper{width:90%;max-width:800px;margin:30px auto;}.st-accordion{width:100%;min-width:270px;margin:0 auto;}.st-accordion ul li{height:100px;border-bottom:1px solid #c7deef;border-top:1px solid #fff;overflow:hidden;}.st-accordion ul li:first-child{border-top:none;}.st-accordion ul li > a{font-family:&#8217;Josefin Slab&#8217;,Georgia, serif;text-shadow:1px 1px 1px #fff;font-size:24px;display:block;position:relative;line-height:100px;outline:none;-webkit-transition:color .2s ease-in-out;-moz-transition:color .2s ease-in-out;-o-transition:color .2s ease-in-out;-ms-transition:color .2s ease-in-out;transition:color .2s ease-in-out;}.st-accordion ul li > a span{background:transparent url(/images/down.png) no-repeat center center;text-indent:-9000px;width:26px;height:14px;position:absolute;top:50%;right:-26px;margin-top:-7px;opacity:0;-webkit-transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;-ms-transition:all .2s ease-in-out;transition:all .2s ease-in-out;}.st-accordion ul li > a:hover span{opacity:1;right:10px;}.st-accordion ul li.st-open > a span{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);transform:rotate(180deg);right:10px;opacity:1;}.st-content{padding:5px 0 30px;}.st-content p{font-size:16px;font-family:Georgia, serif;font-style:italic;line-height:28px;padding:0 4px 15px;}.st-content img{width:125px;border-right:1px solid #fff;border-bottom:1px solid #fff;}.st-accordion ul li > a:hover,.st-accordion ul li.st-open > a{color:#1693eb;}@media screen and max-width 320px{.st-accordion ul li > a{font-size:36px;}}
+</style>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jatin Ganhotra(@silverSpoon)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T01:33:00+05:30" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/how-to-install/'>How-to-Install</a>, <a class='category' href='/blog/categories/mongodb/'>MongoDB</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/" data-via="_silverSpoon" data-counturl="http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/install-mongodb-on-ubuntu/">Install MongoDB on Ubuntu</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/silverSpoon">@silverSpoon</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'silverSpoon',
+            count: 3,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("_silverSpoon", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/_silverSpoon" class="twitter-follow-button" data-show-count="false">Follow @_silverSpoon</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/102533369051290820501?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jatin Ganhotra -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'silverspoon';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/';
+        var disqus_url = 'http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
