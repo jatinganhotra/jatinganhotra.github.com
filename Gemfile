@@ -14,5 +14,6 @@ group :development do
   gem 'stringex', '~> 1.4.0'
   gem 'liquid', '~> 2.3.0'
 end
-
+gem 'rack-protection'
 gem 'sinatra', '~> 1.3.2'
+gem 'thin'
