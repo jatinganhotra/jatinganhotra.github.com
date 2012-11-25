@@ -4,7 +4,7 @@ title: "Install MongoDB on Ubuntu"
 date: 2011-11-15 01:33
 comments: true
 author: Jatin Ganhotra(@silverSpoon)
-categories: [Ubuntu, MongoDB, How-to-Install]
+categories: [Ubuntu, MongoDB, How to Install]
 sharing: true
 footer: true
 ---
