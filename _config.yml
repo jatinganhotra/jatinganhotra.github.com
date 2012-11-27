@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://silverSpoon.github.com
+url: http://jatinganhotra.com
 title: blog@silverSpoon
 subtitle: render :object => Experience.new
 author: Jatin Ganhotra
