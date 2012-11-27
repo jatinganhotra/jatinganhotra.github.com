@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: C++ | blog@silverSpoon]]></title>
-  <link href="http://silverSpoon.github.com/blog/categories/c-/atom.xml" rel="self"/>
-  <link href="http://silverSpoon.github.com/"/>
-  <updated>2012-11-27T20:47:37+05:30</updated>
-  <id>http://silverSpoon.github.com/</id>
+  <link href="http://jatinganhotra.com/blog/categories/c-/atom.xml" rel="self"/>
+  <link href="http://jatinganhotra.com/"/>
+  <updated>2012-11-27T21:00:15+05:30</updated>
+  <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Forward Class Declaration in C++]]></title>
-    <link href="http://silverSpoon.github.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/"/>
+    <link href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/"/>
     <updated>2012-11-25T21:00:00+05:30</updated>
-    <id>http://silverSpoon.github.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus</id>
+    <id>http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus</id>
     <content type="html"><![CDATA[<p>"In computer programming, a <a href="%22http://en.wikipedia.org/wiki/Forward_declaration">forward declaration</a> is a declaration of an identifier (denoting an entity such as a type, a variable, or a function) for which the programmer has not yet given a complete definition."</p>
 
 <p>In C++, you should forward declare classes instead of including headers. Don't use an #include when a forward declaration would suffice.

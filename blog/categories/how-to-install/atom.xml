@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: How to Install | blog@silverSpoon]]></title>
-  <link href="http://silverSpoon.github.com/blog/categories/how-to-install/atom.xml" rel="self"/>
-  <link href="http://silverSpoon.github.com/"/>
-  <updated>2012-11-27T20:47:37+05:30</updated>
-  <id>http://silverSpoon.github.com/</id>
+  <link href="http://jatinganhotra.com/blog/categories/how-to-install/atom.xml" rel="self"/>
+  <link href="http://jatinganhotra.com/"/>
+  <updated>2012-11-27T21:00:15+05:30</updated>
+  <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Install MongoDB on Ubuntu]]></title>
-    <link href="http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu/"/>
+    <link href="http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/"/>
     <updated>2011-11-15T01:33:00+05:30</updated>
-    <id>http://silverSpoon.github.com/blog/2011/11/15/install-mongodb-on-ubuntu</id>
+    <id>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu</id>
     <content type="html"><![CDATA[<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 
 
