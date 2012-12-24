@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GIT | blog@silverSpoon]]></title>
+  <link href="http://jatinganhotra.com/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://jatinganhotra.com/"/>
+  <updated>2012-12-24T16:58:55+05:30</updated>
+  <id>http://jatinganhotra.com/</id>
+  <author>
+    <name><![CDATA[Jatin Ganhotra]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why use GIT and hang CVS?]]></title>
+    <link href="http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/"/>
+    <updated>2012-11-03T10:20:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git</id>
+    <content type="html"><![CDATA[<p>I recently delivered a presentation on <em><strong> Why use GIT and leave CVS </strong></em>.
+It covers various aspects where <a href="http://en.wikipedia.org/wiki/Concurrent_Versions_System">CVS</a> is a total failure, thus stressing upon the need to change.</p>
+
+<p>Then, I touched upon the history of <a href="http://en.wikipedia.org/wiki/Revision_control">Version Control Systems</a>, show-casing how they have evolved over the time, and under which category do CVS and GIT fall.</p>
+
+<p>With the staze set then, I covered some basic <a href="http://git-scm.com">GIT</a> commands, explained the GIT architecture, how it works under-the-hood and showed some GIT coolness.</p>
+
+<p>Here is the presentation. Enjoy! :)</p>
+
+<h5>Feel free to use it, if you wish. You can find it @<a href="http://prezi.com/recommend/pui6-w8iqrxd">Prezi</a>.</h5>
+
+<iframe src="http://prezi.com/embed/sdmunjlnosxm/?bgcolor=ffffff&amp;lock_to_path=1&amp;autoplay=no&amp;autohide_ctrls=0" width="800" height="550" frameBorder="0"></iframe>
+
+
+<p></p>
+
+<p>For more inforation, refer to:</p>
+
+<ul>
+<li><a href="http://prezi.com/sdmunjlnosxm/why-use-git/?kw=view-sdmunjlnosxm&amp;rc=ref-16379955">Original Prezi link</a></li>
+<li><a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">Visual Guide to Version Control</a></li>
+<li><a href="http://better-scm.shlomifish.org/comparison/">Better SCM Initiative: Comparison</a> - A useful summary of different systems and their features.</li>
+<li><a href="http://www.ericsink.com/scm/source_control.html">Eric Sink's Source Control HOWTO</a> - The basics of version control</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
