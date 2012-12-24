@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://jatinganhotra.com/</loc>
-        <lastmod>2012-11-26T00:20:46+05:30</lastmod>
-    </url>
-    <url>
         <loc>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/</loc>
         <lastmod>2012-11-25T23:32:12+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/</loc>
+        <lastmod>2012-12-24T14:47:24+05:30</lastmod>
     </url>
     <url>
         <loc>
@@ -16,6 +16,6 @@
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/archives/</loc>
-        <lastmod>2012-11-26T00:20:46+05:30</lastmod>
+        <lastmod>2012-12-24T14:47:24+05:30</lastmod>
     </url>
 </urlset>

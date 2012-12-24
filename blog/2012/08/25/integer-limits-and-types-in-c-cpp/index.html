@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Forward Class Declaration in C++ - blog@silverSpoon</title>
+  <title>Integer Limits and Types In C/C++ - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="&#8220;In computer programming, a forward declaration is a declaration of an identifier (denoting an entity such as a type, a variable, or a function &hellip;">
+  <meta name="description" content="Unlike Java or C#, primitive data types in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">Forward Class Declaration in C++</h1>
+      <h1 class="entry-title">Integer Limits and Types in C/C++</h1>
     
     
       <p class="meta">
@@ -95,7 +95,7 @@
   
 
 
-<time datetime="2012-11-25T21:00:00+05:30" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+<time datetime="2012-08-25T10:20:00+05:30" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -104,92 +104,51 @@
   </header>
 
 
-<div class="entry-content"><p>&#8220;In computer programming, a <a href="%22http://en.wikipedia.org/wiki/Forward_declaration">forward declaration</a> is a declaration of an identifier (denoting an entity such as a type, a variable, or a function) for which the programmer has not yet given a complete definition.&#8221;</p>
+<div class="entry-content"><p>Unlike <a href="http://java.com/en/">Java</a> or <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>, <a href="http://en.wikipedia.org/wiki/Primitive_data_type">primitive data types</a> in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer. The size of basic C++ types depends on</p>
 
-<p>In C++, you should forward declare classes instead of including headers. Don&#8217;t use an #include when a forward declaration would suffice.
-When you include a header file you introduce a dependency that will cause your code to be recompiled whenever the header file changes. If your header file includes other header files, any change to those files will cause any code that includes your header to be recompiled. Therefore, you should prefer to minimize includes, particularly includes of header files in other header files.</p>
-
-<p>You can significantly reduce the number of header files you need to include in your own header files by using forward declarations. For example, if your header file uses the File class in ways that do not require access to the declaration of the File class, your header file can just forward declare class File; instead of having to #include &#8220;file.h&#8221;.</p>
-
-<p>This will in turn speed a little bit the compilation.</p>
-
-<p><strong>When can I use the forward class declaration?</strong><br/>
-Put yourself in the compiler&#8217;s position: when you forward declare a type, all the compiler know is that this type exists; it knows nothing about its size, members or methods. This is why it&#8217;s called an <em>incomplete type</em>. Therefore, you cannot use the <em>incomplete</em> type at places where the compiler would need to know the layout of the type.</p>
-
-<p>Assuming the following forward declaration
-<code>class Forward;</code></p>
-
-<p><strong>You can use forward declarations in all the following cases, where</strong></p>
-
-<div><script src='https://gist.github.com/4144783.js?file='></script>
-<noscript><pre><code>class Master {
-private:
-    // Declare a member to be a pointer or a reference to the incomplete type
-    Forward *ptr1;     
-    Forward &amp;ptr2;
-
-public:
-
-    // Declare functions or methods which accepts/return incomplete types:
-    void ByValue(Forward by_value);
-    Forward OrReturnValue();
-
-    // Define functions or methods which accepts/return pointers/references 
-    // to the incomplete type (but without using its members):
-    void OrByPointer(Forward* by_pointer);
-    void OrByReference(const Forward&amp; by_reference);
-    Forward&amp; ReturnByRef();
-    Forward* ReturnByPointer();
-
-};</code></pre></noscript></div>
+<ul>
+<li><h3><strong>The Architecture</strong> (16 bits, 32 bits, 64 bits) and</h3></li>
+</ul>
 
 
-<p><strong>You can&#8217;t use forward declarations in all the following cases, where</strong></p>
+<p>You can expect <a href="http://en.cppreference.com/w/cpp/types/size_t">std::size_t</a> to always represent the unsigned native integer size on current architecture. i.e. 16-bit, 32-bit or 64-bit. e.g<br/>
+On a x64-bit machine, with <em>x86_64</em> hardware-platform and processor,
+<code>sizeof(std::size_t) == sizeof(unsigned int) == 8 </code><br/>
+where as, on a 32-bit machine, with <em>i386</em> hardware-platform and <em>i686</em> processor,
+<code>sizeof(std::size_t) == sizeof(unsigned int) == 4 </code><br/>
+But as far as all the other built-in types go, it really depends on the compiler.</p>
 
-<div><script src='https://gist.github.com/4144778.js?file='></script>
-<noscript><pre><code>// Use it as a base class
-class Master : Forward {} // compiler error!
-
-// Use it to declare a member:
-class Master {
-    Forward cannot_define_obj_member; // compiler error!
-};
-
-// Define functions or methods using the incomplete type
-void SomeFunc1(Forward x) {} // compiler error!
-Forward    SomeFunc2()    {} // compiler error!
-
-// Use its methods or fields, in fact trying to dereference a variable with incomplete type
-class Master {
-    Forward *forward_class_ptr;            
-    void SomeFunc()            
-    {
-        forward_class_ptr-&gt;SomeMethod();      // compiler error!
-        int i = forward_class_ptr-&gt;SomeField; // compiler error!
-    }
-};
-
-// Whenever you use a class as a template parameter, the declaration of that class must be complete and not simply forward declared.
-class Master {
-      std::vector&lt;Forward&gt; some_stl_containers_;
-};
+<ul>
+<li><h3><strong>The Compiler</strong></h3></li>
+</ul>
 
 
-// Delete the forward declared class in the module
-class Forward;
-class Master
-{
-    void SomeFunc(Forward* forward_class_ptr)
-    {
-        delete forward_class_ptr;
-    }
-};
-// From the C++ standard: 5.3.5/5:
-// &quot;If the object being deleted has incomplete class type at the point of deletion and the complete class has a // non-trivial destructor or a deallocation function, the behavior is undefined.&quot;
-// e.g gcc 4.2.1 errors out and reports a note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined.
-</code></pre></noscript></div>
+<p>The C++ standard does not specify the size of integral types in bytes, but it specifies minimum ranges they must be able to hold. You can infer minimum size in bits from the required range and the value of <code>CHAR_BIT</code> macro in &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>>, that defines the number of bits in a byte (in all but the most obscure platforms it&#8217;s 8).<br/>
+<em>An important point</em> to note for <code>char</code> is that its size is always 1 byte, or <code>CHAR_BIT</code> bits (hence the name). char is always a byte , but it&#8217;s not always an octet. <em>A byte is the smallest addressable unit of memory (in most definitions), an octet is 8-bit unit of memory.</em>
+i.e <code>sizeof(char) == 1</code> for all implementations, but <code>CHAR_BIT</code> defines the size of a byte for a platform and it&#8217;s not always 8 bit. There are platforms with 16-bit and 32-bit bytes, hence char will take up more than 8 bits, but it is still a byte.</p>
+
+<p>A C++ (or C) implementation can define the size of a type in bytes <code>sizeof(type)</code> to any value, as long as</p>
+
+<ol>
+<li>the expression <code>sizeof(type) * CHAR_BIT</code> evaluates to the number of bits enough to contain required ranges, and</li>
+<li>the ordering of type is still valid (e.g. <code>sizeof(int) &lt;= sizeof(long)</code>).</li>
+</ol>
 
 
+<p>The actual implementation-specific ranges can be found in &lt;<a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/limits.h.html">limits.h</a>> header in C, or &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>> in C++ (or even better, templated <a href="http://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a> in &lt;<a href="http://en.cppreference.com/w/cpp/header/limits">limits</a>> header).
+Minimum ranges <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf">required by the standard</a> (page 22) can be found using this C++ snippet:</p>
+
+<p><a href="https://gist.github.com/4368027">GIST - C++ snippet - Listing of MIN/MAX values, attributes of Integral Types</a>.</p>
+
+<h3><strong>Portability</strong></h3>
+
+<p>If you are concerned with portability and want guaranteed size, or you want the name of the type reflects the size,</p>
+
+<ul>
+<li>You can use the header <a href="http://www.boost.org/doc/libs/1%5F40%5F0/libs/integer/cstdint.htm">BOOST cstdint</a>. It&#8217;s usually better than inventing your own wheel(which incurs the maintainence and testing), or</li>
+<li>You can use the header &lt;<a href="http://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.2/cinttypes-source.html">cinttypes</a>>, where the following macros are available: <code>int8_t, int16_t, int32_t, uint8_t, uint16_t, uint32_t</code> etc.<br/>
+For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttypes.h#inttypes.h">Wiki- Inttypes.h</a>.</li>
+</ul>
 
 </div>
 
@@ -213,12 +172,12 @@ class Master
   
 
 
-<time datetime="2012-11-25T21:00:00+05:30" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+<time datetime="2012-08-25T10:20:00+05:30" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/forward-class-declaration/'>Forward Class Declaration</a>
+    <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/integer-limits/'>Integer Limits</a>
   
 </span>
 
@@ -227,7 +186,7 @@ class Master
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -240,8 +199,10 @@ class Master
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/08/25/integer-limits-and-types-in-c-cpp/" title="Previous Post: Integer Limits and Types In C/C++">&laquo; Integer Limits and Types In C/C++</a>
+        <a class="basic-alignment left" href="/blog/2011/11/15/install-mongodb-on-ubuntu/" title="Previous Post: Install MongoDB on Ubuntu">&laquo; Install MongoDB on Ubuntu</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" title="Next Post: Forward Class Declaration in C++">Forward Class Declaration in C++ &raquo;</a>
       
     </p>
   </footer>
@@ -354,8 +315,8 @@ class Master
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/';
-        var disqus_url = 'http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/';
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/';
         var disqus_script = 'embed.js';
       
     (function () {
