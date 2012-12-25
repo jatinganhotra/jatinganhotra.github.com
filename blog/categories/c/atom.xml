@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/c/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2012-12-24T16:58:55+05:30</updated>
+  <updated>2012-12-25T15:51:16+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -18,7 +18,18 @@
     <link href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/"/>
     <updated>2012-08-25T10:20:00+05:30</updated>
     <id>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp</id>
-    <content type="html"><![CDATA[<p>Unlike <a href="http://java.com/en/">Java</a> or <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>, <a href="http://en.wikipedia.org/wiki/Primitive_data_type">primitive data types</a> in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer. The size of basic C++ types depends on</p>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>Unlike <a href="http://java.com/en/">Java</a> or <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>, <a href="http://en.wikipedia.org/wiki/Primitive_data_type">primitive data types</a> in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer. The size of basic C++ types depends on</p>
 
 <ul>
 <li><h3><strong>The Architecture</strong> (16 bits, 32 bits, 64 bits) and</h3></li>

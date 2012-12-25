@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Prezi | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/prezi/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2012-12-24T16:58:55+05:30</updated>
+  <updated>2012-12-25T15:51:16+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -18,7 +18,18 @@
     <link href="http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/"/>
     <updated>2012-11-03T10:20:00+05:30</updated>
     <id>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git</id>
-    <content type="html"><![CDATA[<p>I recently delivered a presentation on <em><strong> Why use GIT and leave CVS </strong></em>.
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>I recently delivered a presentation on <em><strong> Why use GIT and leave CVS </strong></em>.
 It covers various aspects where <a href="http://en.wikipedia.org/wiki/Concurrent_Versions_System">CVS</a> is a total failure, thus stressing upon the need to change.</p>
 
 <p>Then, I touched upon the history of <a href="http://en.wikipedia.org/wiki/Revision_control">Version Control Systems</a>, show-casing how they have evolved over the time, and under which category do CVS and GIT fall.</p>
