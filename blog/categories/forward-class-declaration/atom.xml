@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Forward Class Declaration | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/forward-class-declaration/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2012-12-25T15:56:51+05:30</updated>
+  <updated>2012-12-26T18:01:32+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -45,7 +45,7 @@ Put yourself in the compiler's position: when you forward declare a type, all th
 <code>class Forward;</code></p>
 
 <p><strong>You can use forward declarations in all the following cases, where</strong><br/>
-<div><script src='https://gist.github.com/4144783.js?file='></script>
+<div><script src='https://gist.github.com/4144783.js'></script>
 <noscript><pre><code>class Master {
 private:
     // Declare a member to be a pointer or a reference to the incomplete type
@@ -69,7 +69,7 @@ public:
 </p>
 
 <p><strong>You can't use forward declarations in all the following cases, where</strong><br/>
-<div><script src='https://gist.github.com/4144778.js?file='></script>
+<div><script src='https://gist.github.com/4144778.js'></script>
 <noscript><pre><code>// Use it as a base class
 class Master : Forward {} // compiler error!
 

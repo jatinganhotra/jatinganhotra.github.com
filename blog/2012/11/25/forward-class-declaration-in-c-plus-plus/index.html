@@ -144,7 +144,7 @@ Put yourself in the compiler&#8217;s position: when you forward declare a type, 
 
 <p><strong>You can use forward declarations in all the following cases, where</strong></p>
 
-<div><script src='https://gist.github.com/4144783.js?file='></script>
+<div><script src='https://gist.github.com/4144783.js'></script>
 <noscript><pre><code>class Master {
 private:
     // Declare a member to be a pointer or a reference to the incomplete type
@@ -169,7 +169,7 @@ public:
 
 <p><strong>You can&#8217;t use forward declarations in all the following cases, where</strong></p>
 
-<div><script src='https://gist.github.com/4144778.js?file='></script>
+<div><script src='https://gist.github.com/4144778.js'></script>
 <noscript><pre><code>// Use it as a base class
 class Master : Forward {} // compiler error!
 
