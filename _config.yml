@@ -98,11 +98,6 @@ google_analytics_tracking_id: UA-28360121-1
 # Facebook Like
 facebook_like: true
 
-# Google Translate
-google_translate: true
-google_translate_customization_content : 697f75e3ed0f4c82-20172f9099b311c4-g6abd14c8913940fc-11
-google_analytics_track: true
-
 # Stack Overlfow: add your user name and user id (the user id is visible in the url of your s.o. profile page)
 stackoverflow_user_name: jatin-ganhotra
 stackoverflow_user_id: 355722
