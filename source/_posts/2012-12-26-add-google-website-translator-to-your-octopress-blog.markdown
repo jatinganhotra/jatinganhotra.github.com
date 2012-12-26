@@ -55,7 +55,7 @@ If you observe carefully, you can look at the values of the parameters that you 
 
 ```
 <div id="google_translate_element">
-```
+```  
 4. Include `google_translate.html` in the `<head>` tag in the file `source/_includes/head.html`, like [this](https://github.com/imathis/octopress/blob/master/.themes/classic/source/_includes/head.html#L28).  
 5. Run `rake generate ; rake preview` to play with it locally on your machine.  
 
