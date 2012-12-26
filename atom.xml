@@ -4,7 +4,7 @@
   <title><![CDATA[blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2012-12-26T18:01:32+05:30</updated>
+  <updated>2012-12-27T00:45:38+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Google Website Translator to your Octopress Blog]]></title>
+    <link href="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/"/>
+    <updated>2012-12-26T20:06:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>Most countries in the world have English as their <a href="http://en.wikipedia.org/wiki/List_of_countries_where_English_is_an_official_language">official language</a>, but there are many countries where people <a href="http://en.wikipedia.org/wiki/File:English-as-Official-Language_Map.png">don&#8217;t know English</a>. So, it&#8217;s good to have a website translator if people from such countries visit your blog. This article will show you how to add <a href="http://translate.google.com/manager/website/">Google Website Translator</a> to your <a href="http://octopress.org/">Octopress</a> blog.</p>
+
+<p>Recently, <a href="http://www.google.com/">Google</a> <a href="http://googletranslate.blogspot.in/2012/05/now-you-can-polish-up-googles.html">announced in a post</a> on their <a href="http://googletranslate.blogspot.in/">Google translate blog</a> that they are introducing a beta website translator for blogs and websites.  Google translate currently works over 60 languages.  Once you add the customization meta tag to a webpage, visitors will see your customized translations whenever they translate the page, even when they use the feature in <a href="https://www.google.com/intl/en-GB/chrome/browser/features.html">Chrome</a> and <a href="http://www.google.com/toolbar/ie/index.html">Google Toolbar</a>. They’ll also now be able to &#8217;<a href="http://googleblog.blogspot.in/2007/03/suggest-better-translation.html">suggest a better translation</a>&#8217; when they notice a translation that’s not quite right, and later you can accept and use that suggestion on your site.</p>
+
+<p>For more information about better translation and suggestion, refer <a href="http://translate.google.com/manager/website/">here</a>. You can follow these easy steps to add Google Website Translator to your Octopress blog:</p>
+
+<h4>Step 1 : Get <code>&lt;meta&gt;</code> tag and <code>&lt;script&gt;</code>&#8217;s which the Website Translator plugin uses</h4>
+
+<ol>
+<li>Go to <a href="http://translate.google.com/manager/website/">Google Website Translator</a> and sign in with your Google account.</li>
+<li>Enter the URL for your website and the original language of your website.</li>
+<li>You can customize the plugin settings like <em>Translation languages (all/specific)</em>, <em>Display modes (Inline/Tabbed/Automatic)</em> etc. and whether you want to track Translation Traffic using Google Analytics.</li>
+<li>Google translate will give you a <code>&lt;meta&gt;</code> tag and a <code>code snippet</code> with <code>&lt;div&gt;</code> and <code>&lt;script&gt;</code> tags.</li>
+</ol>
+
+
+<h4>Step 2 : Use the above snippet in your Octopress blog</h4>
+
+<ol>
+<li>Create a file <code>google_translate.html</code> in <code>source/_includes/</code>.</li>
+<li>Add the <code>&lt;meta&gt;</code> tag and the <code>&lt;script&gt;</code> tags to this file.</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;meta name="google-translate-customization" content="ABCDEFGHIJKLMNOPQRSTUVWXYZ"&gt;&lt;/meta&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>    function googleTranslateElementInit() {
+</span><span class='line'>        new google.translate.TranslateElement({
+</span><span class='line'>              pageLanguage: 'en', 
+</span><span class='line'>              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+</span><span class='line'>              gaTrack: true,
+</span><span class='line'>              gaId: 'UA-ABCDEFGH'},
+</span><span class='line'>         'google_translate_element');
+</span><span class='line'>}
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script type="text/javascript" src="http://jatinganhotra.com//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you observe carefully, you can look at the values of the parameters that you set when you got the code. e.g. I&#8217;m using <em>inline</em> styling with <em>Simple</em> layout and Google Analytics to track translation traffic.<br/>
+3. Add the following line where you want to display the plugin.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div id="google_translate_element"&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Include <code>google_translate.html</code> in the <code>&lt;head&gt;</code> tag in the file <code>source/_includes/head.html</code>, like <a href="https://github.com/imathis/octopress/blob/master/.themes/classic/source/_includes/head.html#L28">this</a>.</li>
+<li>Run <code>rake generate ; rake preview</code> to play with it locally on your machine.</li>
+</ol>
+
+
+<p>For more help, visit official <a href="https://support.google.com/translate/">Google translate support page</a> or if you face any problems, mention so in the comments section.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Forward Class Declaration in C++]]></title>

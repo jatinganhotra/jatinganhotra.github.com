@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Integer Limits and Types In C/C++ - blog@silverSpoon</title>
+  <title>Add Google Website Translator to your Octopress Blog - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; Unlike Java or C#, primitive data types in C++ can vary in size &hellip;">
+  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; Most countries in the world have English as their official &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -89,7 +89,7 @@ function googleTranslateElementInit() {
   
   <header>
     
-      <h1 class="entry-title">Integer Limits and Types in C/C++</h1>
+      <h1 class="entry-title">Add Google Website Translator to Your Octopress Blog</h1>
     
     
       <p class="meta">
@@ -105,7 +105,7 @@ function googleTranslateElementInit() {
   
 
 
-<time datetime="2012-08-25T10:20:00+05:30" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
+<time datetime="2012-12-26T20:06:00+05:30" pubdate data-updated="true">Dec 26<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -125,52 +125,72 @@ function googleTranslateElementInit() {
 <BR>&nbsp;<BR>
 
 
-<p>Unlike <a href="http://java.com/en/">Java</a> or <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>, <a href="http://en.wikipedia.org/wiki/Primitive_data_type">primitive data types</a> in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer. The size of basic C++ types depends on</p>
+<p>Most countries in the world have English as their <a href="http://en.wikipedia.org/wiki/List_of_countries_where_English_is_an_official_language">official language</a>, but there are many countries where people <a href="http://en.wikipedia.org/wiki/File:English-as-Official-Language_Map.png">don&#8217;t know English</a>. So, it&#8217;s good to have a website translator if people from such countries visit your blog. This article will show you how to add <a href="http://translate.google.com/manager/website/">Google Website Translator</a> to your <a href="http://octopress.org/">Octopress</a> blog.</p>
 
-<ul>
-<li><h3><strong>The Architecture</strong> (16 bits, 32 bits, 64 bits) and</h3></li>
-</ul>
+<p>Recently, <a href="http://www.google.com/">Google</a> <a href="http://googletranslate.blogspot.in/2012/05/now-you-can-polish-up-googles.html">announced in a post</a> on their <a href="http://googletranslate.blogspot.in/">Google translate blog</a> that they are introducing a beta website translator for blogs and websites.  Google translate currently works over 60 languages.  Once you add the customization meta tag to a webpage, visitors will see your customized translations whenever they translate the page, even when they use the feature in <a href="https://www.google.com/intl/en-GB/chrome/browser/features.html">Chrome</a> and <a href="http://www.google.com/toolbar/ie/index.html">Google Toolbar</a>. They’ll also now be able to &#8217;<a href="http://googleblog.blogspot.in/2007/03/suggest-better-translation.html">suggest a better translation</a>&#8217; when they notice a translation that’s not quite right, and later you can accept and use that suggestion on your site.</p>
 
+<p>For more information about better translation and suggestion, refer <a href="http://translate.google.com/manager/website/">here</a>. You can follow these easy steps to add Google Website Translator to your Octopress blog:</p>
 
-<p>You can expect <a href="http://en.cppreference.com/w/cpp/types/size_t">std::size_t</a> to always represent the unsigned native integer size on current architecture. i.e. 16-bit, 32-bit or 64-bit. e.g<br/>
-On a x64-bit machine, with <em>x86_64</em> hardware-platform and processor,
-<code>sizeof(std::size_t) == sizeof(unsigned int) == 8 </code><br/>
-where as, on a 32-bit machine, with <em>i386</em> hardware-platform and <em>i686</em> processor,
-<code>sizeof(std::size_t) == sizeof(unsigned int) == 4 </code><br/>
-But as far as all the other built-in types go, it really depends on the compiler.</p>
-
-<ul>
-<li><h3><strong>The Compiler</strong></h3></li>
-</ul>
-
-
-<p>The C++ standard does not specify the size of integral types in bytes, but it specifies minimum ranges they must be able to hold. You can infer minimum size in bits from the required range and the value of <code>CHAR_BIT</code> macro in &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>>, that defines the number of bits in a byte (in all but the most obscure platforms it&#8217;s 8).<br/>
-<em>An important point</em> to note for <code>char</code> is that its size is always 1 byte, or <code>CHAR_BIT</code> bits (hence the name). char is always a byte , but it&#8217;s not always an octet. <em>A byte is the smallest addressable unit of memory (in most definitions), an octet is 8-bit unit of memory.</em>
-i.e <code>sizeof(char) == 1</code> for all implementations, but <code>CHAR_BIT</code> defines the size of a byte for a platform and it&#8217;s not always 8 bit. There are platforms with 16-bit and 32-bit bytes, hence char will take up more than 8 bits, but it is still a byte.</p>
-
-<p>A C++ (or C) implementation can define the size of a type in bytes <code>sizeof(type)</code> to any value, as long as</p>
+<h4>Step 1 : Get <code>&lt;meta&gt;</code> tag and <code>&lt;script&gt;</code>&#8217;s which the Website Translator plugin uses</h4>
 
 <ol>
-<li>the expression <code>sizeof(type) * CHAR_BIT</code> evaluates to the number of bits enough to contain required ranges, and</li>
-<li>the ordering of type is still valid (e.g. <code>sizeof(int) &lt;= sizeof(long)</code>).</li>
+<li>Go to <a href="http://translate.google.com/manager/website/">Google Website Translator</a> and sign in with your Google account.</li>
+<li>Enter the URL for your website and the original language of your website.</li>
+<li>You can customize the plugin settings like <em>Translation languages (all/specific)</em>, <em>Display modes (Inline/Tabbed/Automatic)</em> etc. and whether you want to track Translation Traffic using Google Analytics.</li>
+<li>Google translate will give you a <code>&lt;meta&gt;</code> tag and a <code>code snippet</code> with <code>&lt;div&gt;</code> and <code>&lt;script&gt;</code> tags.</li>
 </ol>
 
 
-<p>The actual implementation-specific ranges can be found in &lt;<a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/limits.h.html">limits.h</a>> header in C, or &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>> in C++ (or even better, templated <a href="http://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a> in &lt;<a href="http://en.cppreference.com/w/cpp/header/limits">limits</a>> header).
-Minimum ranges <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf">required by the standard</a> (page 22) can be found using this C++ snippet:</p>
+<h4>Step 2 : Use the above snippet in your Octopress blog</h4>
 
-<p><a href="https://gist.github.com/4368027">GIST - C++ snippet - Listing of MIN/MAX values, attributes of Integral Types</a>.</p>
+<ol>
+<li>Create a file <code>google_translate.html</code> in <code>source/_includes/</code>.</li>
+<li>Add the <code>&lt;meta&gt;</code> tag and the <code>&lt;script&gt;</code> tags to this file.</li>
+</ol>
 
-<h3><strong>Portability</strong></h3>
 
-<p>If you are concerned with portability and want guaranteed size, or you want the name of the type reflects the size,</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;meta name="google-translate-customization" content="ABCDEFGHIJKLMNOPQRSTUVWXYZ"&gt;&lt;/meta&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>    function googleTranslateElementInit() {
+</span><span class='line'>        new google.translate.TranslateElement({
+</span><span class='line'>              pageLanguage: 'en', 
+</span><span class='line'>              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+</span><span class='line'>              gaTrack: true,
+</span><span class='line'>              gaId: 'UA-ABCDEFGH'},
+</span><span class='line'>         'google_translate_element');
+</span><span class='line'>}
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
 
-<ul>
-<li>You can use the header <a href="http://www.boost.org/doc/libs/1%5F40%5F0/libs/integer/cstdint.htm">BOOST cstdint</a>. It&#8217;s usually better than inventing your own wheel(which incurs the maintainence and testing), or</li>
-<li>You can use the header &lt;<a href="http://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.2/cinttypes-source.html">cinttypes</a>>, where the following macros are available: <code>int8_t, int16_t, int32_t, uint8_t, uint16_t, uint32_t</code> etc.<br/>
-For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttypes.h#inttypes.h">Wiki- Inttypes.h</a>.</li>
-</ul>
 
+<p>If you observe carefully, you can look at the values of the parameters that you set when you got the code. e.g. I&#8217;m using <em>inline</em> styling with <em>Simple</em> layout and Google Analytics to track translation traffic.<br/>
+3. Add the following line where you want to display the plugin.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div id="google_translate_element"&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Include <code>google_translate.html</code> in the <code>&lt;head&gt;</code> tag in the file <code>source/_includes/head.html</code>, like <a href="https://github.com/imathis/octopress/blob/master/.themes/classic/source/_includes/head.html#L28">this</a>.</li>
+<li>Run <code>rake generate ; rake preview</code> to play with it locally on your machine.</li>
+</ol>
+
+
+<p>For more help, visit official <a href="https://support.google.com/translate/">Google translate support page</a> or if you face any problems, mention so in the comments section.</p>
 </div>
 
 
@@ -193,12 +213,12 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
   
 
 
-<time datetime="2012-08-25T10:20:00+05:30" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
+<time datetime="2012-12-26T20:06:00+05:30" pubdate data-updated="true">Dec 26<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/integer-limits/'>Integer Limits</a>
+    <a class='category' href='/blog/categories/blog/'>Blog</a>, <a class='category' href='/blog/categories/blogging-tips/'>Blogging-tips</a>, <a class='category' href='/blog/categories/google-website-translator/'>Google Website Translator</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
@@ -207,7 +227,7 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -220,10 +240,8 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/11/15/install-mongodb-on-ubuntu/" title="Previous Post: Install MongoDB on Ubuntu">&laquo; Install MongoDB on Ubuntu</a>
+        <a class="basic-alignment left" href="/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" title="Previous Post: Forward Class Declaration in C++">&laquo; Forward Class Declaration in C++</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/11/03/why-hang-cvs-and-start-using-git/" title="Next Post: Why use GIT and hang CVS?">Why use GIT and hang CVS? &raquo;</a>
       
     </p>
   </footer>
@@ -350,8 +368,8 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/';
-        var disqus_url = 'http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/';
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/';
         var disqus_script = 'embed.js';
       
     (function () {
