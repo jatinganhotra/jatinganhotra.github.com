@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coding Tips | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/coding-tips/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2012-12-27T03:00:56+05:30</updated>
+  <updated>2013-02-09T12:51:26+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -12,6 +12,100 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C++ - Variable Declaration in 'if' expression]]></title>
+    <link href="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/"/>
+    <updated>2013-02-09T09:16:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>Recently, I encountered a strange compiler error at work. I was trying something similar to this:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="kt">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="n">func1</span><span class="p">()</span> <span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">{</span> <span class="c1">// Use var1 and var2 here - Doesn&#39;t compile }</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+but, it didn't compile. So, I played my Jedi debugging tricks to see
+what exactly went wrong?<br/>
+To my surprise,
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span><span class="p">(</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span>  <span class="p">{</span> <span class="c1">//... } // Doesn&#39;t compile, note the extra ()</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span>      <span class="p">{</span> <span class="c1">//... } // Compiles just fine !!!</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Now, it was well clear that <code>()</code> was the pith of the error.<br/>
+To strengthen my understanding, I tried some more cases with <code>()</code>:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// Variable declaration inside (), both cases don&#39;t compile</span>
+</span><span class='line'><span class="n">bool</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">4</span><span class="p">);</span>           <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">cout</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span>  <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="p">);</span>      <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+The results were affirmative. So, I went to check the C++ Standard.<br/>
+The syntax specification in 6.4/1 gives the following for selection condition:<br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>selection-statement:
+</span><span class='line'>if ( condition ) statement&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>condition: 
+</span><span class='line'>    expression
+</span><span class='line'>    type-specifier-seq declarator = assignment-expression
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// The declarator shall not specify a function or an array.
+</span><span class='line'>// The type-specifier-seq shall not contain typedef and shall not declare a new class or enumeration.</span></code></pre></td></tr></table></div></figure></notextile></div>
+The condition in an if or while statement can be either an expression, or a single variable declaration (with initialisation).</p>
+
+<p>The failing examples are neither valid statements, nor valid declarations, since a declaration can't form part of an expression. The syntax specification says a single declaration, with no parentheses or other adornments and they don't fit the "either expression or declaration" rule for the condition.</p>
+
+<p>So, to sum it up, the <strong>rules for variable declaration in a selection-statement</strong> are:</p>
+
+<ol>
+<li>can only have 1 variable declared per expression,</li>
+<li>the variable declaration must occur first in the expression and</li>
+<li>can't have parenthesis around declaration ( as per the syntax specification)</li>
+</ol>
+
+
+<p><strong>Q</strong>. <em>Why the variable declaration must occur first, and why can we have only 1 variable declared?</em><br/>
+<strong>A:</strong> Short-circuit evaluation of logic and the declared variable(s) scope. Consider this case:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">(</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">val</span><span class="p">))</span> <span class="p">{</span> <span class="c1">//... }    // what should &quot;a&quot; be initialized to?</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+The <code>&amp;&amp;</code> operator is a <em>short-circuit logical AND</em>. As the first part 0 is false, then the second part <code>(int a = val)</code> shouldn't be evaluated because the final answer will be false. If it isn't evaluated, then what to do with code later on that uses a? Should we initialize the variable and leave it undefined?</p>
+
+<p>For these reasons, the variable declaration must be first in the expression and the rules for variable declaration in a selection-statement stated above hold.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Forward Class Declaration in C++]]></title>

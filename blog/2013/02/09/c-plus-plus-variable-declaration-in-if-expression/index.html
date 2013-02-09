@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Forward Class Declaration in C++ - blog@silverSpoon</title>
+  <title>C++ - Variable Declaration in 'if' expression - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; &#8220;In computer programming, a forward declaration is a &hellip;">
+  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; Recently, I encountered a strange compiler error at work. I was &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -89,7 +89,7 @@ function googleTranslateElementInit() {
   
   <header>
     
-      <h1 class="entry-title">Forward Class Declaration in C++</h1>
+      <h1 class="entry-title">C++ - Variable Declaration in 'if' Expression</h1>
     
     
       <p class="meta">
@@ -105,7 +105,7 @@ function googleTranslateElementInit() {
   
 
 
-<time datetime="2012-11-25T21:00:00+05:30" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+<time datetime="2013-02-09T09:16:00+05:30" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -125,93 +125,83 @@ function googleTranslateElementInit() {
 <BR>&nbsp;<BR>
 
 
-<p>&#8220;In computer programming, a <a href="%22http://en.wikipedia.org/wiki/Forward_declaration">forward declaration</a> is a declaration of an identifier (denoting an entity such as a type, a variable, or a function) for which the programmer has not yet given a complete definition.&#8221;</p>
+<p>Recently, I encountered a strange compiler error at work. I was trying something similar to this:</p>
 
-<p>In C++, you should forward declare classes instead of including headers. Don&#8217;t use an #include when a forward declaration would suffice.
-When you include a header file you introduce a dependency that will cause your code to be recompiled whenever the header file changes. If your header file includes other header files, any change to those files will cause any code that includes your header to be recompiled. Therefore, you should prefer to minimize includes, particularly includes of header files in other header files.</p>
-
-<p>You can significantly reduce the number of header files you need to include in your own header files by using forward declarations. For example, if your header file uses the File class in ways that do not require access to the declaration of the File class, your header file can just forward declare class File; instead of having to #include &#8220;file.h&#8221;.</p>
-
-<p>This will in turn speed a little bit the compilation.</p>
-
-<p><strong>When can I use the forward class declaration?</strong><br/>
-Put yourself in the compiler&#8217;s position: when you forward declare a type, all the compiler know is that this type exists; it knows nothing about its size, members or methods. This is why it&#8217;s called an <em>incomplete type</em>. Therefore, you cannot use the <em>incomplete</em> type at places where the compiler would need to know the layout of the type.</p>
-
-<p>Assuming the following forward declaration
-<code>class Forward;</code></p>
-
-<p><strong>You can use forward declarations in all the following cases, where</strong></p>
-
-<div><script src='https://gist.github.com/4144783.js'></script>
-<noscript><pre><code>class Master {
-private:
-    // Declare a member to be a pointer or a reference to the incomplete type
-    Forward *ptr1;     
-    Forward &amp;ptr2;
-
-public:
-
-    // Declare functions or methods which accepts/return incomplete types:
-    void ByValue(Forward by_value);
-    Forward OrReturnValue();
-
-    // Define functions or methods which accepts/return pointers/references 
-    // to the incomplete type (but without using its members):
-    void OrByPointer(Forward* by_pointer);
-    void OrByReference(const Forward&amp; by_reference);
-    Forward&amp; ReturnByRef();
-    Forward* ReturnByPointer();
-
-};</code></pre></noscript></div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="kt">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="n">func1</span><span class="p">()</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span> <span class="c1">// Use var1 and var2 here - Doesn&#39;t compile }</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong>You can&#8217;t use forward declarations in all the following cases, where</strong></p>
+<p>but, it didn&#8217;t compile. So, I played my Jedi debugging tricks to see
+what exactly went wrong?<br/>
+To my surprise,</p>
 
-<div><script src='https://gist.github.com/4144778.js'></script>
-<noscript><pre><code>// Use it as a base class
-class Master : Forward {} // compiler error!
-
-// Use it to declare a member:
-class Master {
-    Forward cannot_define_obj_member; // compiler error!
-};
-
-// Define functions or methods using the incomplete type
-void SomeFunc1(Forward x) {} // compiler error!
-Forward    SomeFunc2()    {} // compiler error!
-
-// Use its methods or fields, in fact trying to dereference a variable with incomplete type
-class Master {
-    Forward *forward_class_ptr;            
-    void SomeFunc()            
-    {
-        forward_class_ptr-&gt;SomeMethod();      // compiler error!
-        int i = forward_class_ptr-&gt;SomeField; // compiler error!
-    }
-};
-
-// Whenever you use a class as a template parameter, the declaration of that class must be complete and not simply forward declared.
-class Master {
-      std::vector&lt;Forward&gt; some_stl_containers_;
-};
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span><span class="p">(</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span>  <span class="p">{</span> <span class="c1">//... } // Doesn&#39;t compile, note the extra () </span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span> <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">()</span> <span class="p">)</span>      <span class="p">{</span> <span class="c1">//... } // Compiles just fine !!!</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-// Delete the forward declared class in the module
-class Forward;
-class Master
-{
-    void SomeFunc(Forward* forward_class_ptr)
-    {
-        delete forward_class_ptr;
-    }
-};
-// From the C++ standard: 5.3.5/5:
-// &quot;If the object being deleted has incomplete class type at the point of deletion and the complete class has a // non-trivial destructor or a deallocation function, the behavior is undefined.&quot;
-// e.g gcc 4.2.1 errors out and reports a note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined.
-</code></pre></noscript></div>
+<p>Now, it was well clear that <code>()</code> was the pith of the error.<br/>
+To strengthen my understanding, I tried some more cases with <code>()</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// Variable declaration inside (), both cases don&#39;t compile</span>
+</span><span class='line'><span class="n">bool</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">4</span><span class="p">);</span>
+</span><span class='line'><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>The results were affirmative. So, I went to check the C++ Standard.<br/>
+The syntax specification in 6.4/1 gives the following for selection condition:</p>
 
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>selection-statement:
+</span><span class='line'>if ( condition ) statement
+</span><span class='line'>    condition: 
+</span><span class='line'>        expression
+</span><span class='line'>        type-specifier-seq declarator = assignment-expression
+</span><span class='line'>
+</span><span class='line'>// The declarator shall not specify a function or an array.
+</span><span class='line'>// The type-specifier-seq shall not contain typedef and shall not declare a new class or enumeration.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The condition in an if or while statement can be either an expression, or a single variable declaration (with initialisation).</p>
+
+<p>The failing examples are neither valid statements, nor valid declarations, since a declaration can&#8217;t form part of an expression. The syntax specification says a single declaration, with no parentheses or other adornments and they don&#8217;t fit the &#8220;either expression or declaration&#8221; rule for the condition.</p>
+
+<p>So, to sum it up, the <strong>rules for variable declaration in a selection-statement</strong> are:</p>
+
+<ol>
+<li>can only have 1 variable declared per expression,</li>
+<li>the variable declaration must occur first in the expression and</li>
+<li>can&#8217;t have parenthesis around declaration ( as per the syntax specification)</li>
+</ol>
+
+
+<p><strong>Q</strong>. <em>Why the variable declaration must occur first, and why can we have only 1 variable declared?</em><br/>
+<strong>A:</strong> Short-circuit evaluation of logic and the declared variable(s) scope. Consider this case:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">(</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">val</span><span class="p">))</span> <span class="p">{</span> <span class="c1">//... }    // what should &quot;a&quot; be initialized to? </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>&amp;&amp;</code> operator is a <em>short-circuit logical AND</em>. As the first part 0 is false, then the second part <code>(int a = val)</code> shouldn&#8217;t be evaluated because the final answer will be false. If it isn&#8217;t evaluated, then what to do with code later on that uses a? Should we initialize the variable and leave it undefined?</p>
+
+<p>For these reasons, the variable declaration must be first in the expression and the rules for variable declaration in a selection-statement stated above hold.</p>
 </div>
 
 
@@ -234,12 +224,12 @@ class Master
   
 
 
-<time datetime="2012-11-25T21:00:00+05:30" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+<time datetime="2013-02-09T09:16:00+05:30" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/forward-class-declaration/'>Forward Class Declaration</a>
+    <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/variable-declaration/'>Variable Declaration</a>
   
 </span>
 
@@ -248,7 +238,7 @@ class Master
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -261,10 +251,8 @@ class Master
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/11/03/why-hang-cvs-and-start-using-git/" title="Previous Post: Why use GIT and hang CVS?">&laquo; Why use GIT and hang CVS?</a>
+        <a class="basic-alignment left" href="/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/" title="Previous Post: Add Google Website Translator to your Octopress Blog">&laquo; Add Google Website Translator to your Octopress Blog</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/" title="Next Post: Add Google Website Translator to your Octopress Blog">Add Google Website Translator to your Octopress Blog &raquo;</a>
       
     </p>
   </footer>
@@ -391,8 +379,8 @@ class Master
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/';
-        var disqus_url = 'http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/';
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: C | blog@silverSpoon]]></title>
-  <link href="http://jatinganhotra.com/blog/categories/c/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Variable Declaration | blog@silverSpoon]]></title>
+  <link href="http://jatinganhotra.com/blog/categories/variable-declaration/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
   <updated>2013-02-09T12:51:26+05:30</updated>
   <id>http://jatinganhotra.com/</id>
@@ -104,71 +104,6 @@ The condition in an if or while statement can be either an expression, or a sing
 The <code>&amp;&amp;</code> operator is a <em>short-circuit logical AND</em>. As the first part 0 is false, then the second part <code>(int a = val)</code> shouldn't be evaluated because the final answer will be false. If it isn't evaluated, then what to do with code later on that uses a? Should we initialize the variable and leave it undefined?</p>
 
 <p>For these reasons, the variable declaration must be first in the expression and the rules for variable declaration in a selection-statement stated above hold.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Integer Limits and Types In C/C++]]></title>
-    <link href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/"/>
-    <updated>2012-08-25T10:20:00+05:30</updated>
-    <id>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp</id>
-    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
-
-<div>
-<span style="float:right;" id="google_translate_element"></span>
-<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
-</div>
-
-
-<BR>&nbsp;<BR>
-
-
-<p>Unlike <a href="http://java.com/en/">Java</a> or <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>, <a href="http://en.wikipedia.org/wiki/Primitive_data_type">primitive data types</a> in C++ can vary in size depending on the platform. For example, int is not guaranteed to be a 32-bit integer. The size of basic C++ types depends on</p>
-
-<ul>
-<li><h3><strong>The Architecture</strong> (16 bits, 32 bits, 64 bits) and</h3></li>
-</ul>
-
-
-<p>You can expect <a href="http://en.cppreference.com/w/cpp/types/size_t">std::size_t</a> to always represent the unsigned native integer size on current architecture. i.e. 16-bit, 32-bit or 64-bit. e.g<br/>
-On a x64-bit machine, with <em>x86_64</em> hardware-platform and processor,
-<code>sizeof(std::size_t) == sizeof(unsigned int) == 8 </code><br/>
-where as, on a 32-bit machine, with <em>i386</em> hardware-platform and <em>i686</em> processor,
-<code>sizeof(std::size_t) == sizeof(unsigned int) == 4 </code><br/>
-But as far as all the other built-in types go, it really depends on the compiler.</p>
-
-<ul>
-<li><h3><strong>The Compiler</strong></h3></li>
-</ul>
-
-
-<p>The C++ standard does not specify the size of integral types in bytes, but it specifies minimum ranges they must be able to hold. You can infer minimum size in bits from the required range and the value of <code>CHAR_BIT</code> macro in &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>>, that defines the number of bits in a byte (in all but the most obscure platforms it's 8).<br/>
-<em>An important point</em> to note for <code>char</code> is that its size is always 1 byte, or <code>CHAR_BIT</code> bits (hence the name). char is always a byte , but it's not always an octet. <em>A byte is the smallest addressable unit of memory (in most definitions), an octet is 8-bit unit of memory.</em>
-i.e <code>sizeof(char) == 1</code> for all implementations, but <code>CHAR_BIT</code> defines the size of a byte for a platform and it's not always 8 bit. There are platforms with 16-bit and 32-bit bytes, hence char will take up more than 8 bits, but it is still a byte.</p>
-
-<p>A C++ (or C) implementation can define the size of a type in bytes <code>sizeof(type)</code> to any value, as long as</p>
-
-<ol>
-<li>the expression <code>sizeof(type) * CHAR_BIT</code> evaluates to the number of bits enough to contain required ranges, and</li>
-<li>the ordering of type is still valid (e.g. <code>sizeof(int) &lt;= sizeof(long)</code>).</li>
-</ol>
-
-
-<p>The actual implementation-specific ranges can be found in &lt;<a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/limits.h.html">limits.h</a>> header in C, or &lt;<a href="http://en.cppreference.com/w/cpp/header/climits">climits</a>> in C++ (or even better, templated <a href="http://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a> in &lt;<a href="http://en.cppreference.com/w/cpp/header/limits">limits</a>> header).
-Minimum ranges <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf">required by the standard</a> (page 22) can be found using this C++ snippet:</p>
-
-<p><a href="https://gist.github.com/4368027">GIST - C++ snippet - Listing of MIN/MAX values, attributes of Integral Types</a>.</p>
-
-<h3><strong>Portability</strong></h3>
-
-<p>If you are concerned with portability and want guaranteed size, or you want the name of the type reflects the size,</p>
-
-<ul>
-<li>You can use the header <a href="http://www.boost.org/doc/libs/1%5F40%5F0/libs/integer/cstdint.htm">BOOST cstdint</a>. It's usually better than inventing your own wheel(which incurs the maintainence and testing), or</li>
-<li>You can use the header &lt;<a href="http://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.2/cinttypes-source.html">cinttypes</a>>, where the following macros are available: <code>int8_t, int16_t, int32_t, uint8_t, uint16_t, uint32_t</code> etc.<br/>
-For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttypes.h#inttypes.h">Wiki- Inttypes.h</a>.</li>
-</ul>
-
 ]]></content>
   </entry>
   
