@@ -7,7 +7,6 @@ author: Jatin Ganhotra(@silverSpoon)
 categories: [Verilog]
 sharing: true
 footer: true
-categories: 
 ---
 
 This is a brief post for beginners to Verilog language, coming from a C/Java background.
