@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Verilog | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/verilog/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2013-02-25T00:03:48+05:30</updated>
+  <updated>2013-02-25T00:10:54+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -18,7 +18,18 @@
     <link href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/"/>
     <updated>2013-02-24T22:32:00+05:30</updated>
     <id>http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog</id>
-    <content type="html"><![CDATA[<p>This is a brief post for beginners to Verilog language, coming from a C/Java background.
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>This is a brief post for beginners to Verilog language, coming from a C/Java background.
 Verilog  differs from a conventional programming language in the sense that the execution of statements is not strictly sequential. Different code blocks are executed concurrently as opposed to the sequential execution of most programming languages. So, a beginner might get  perplexed, as to what is concurrent and what is not !!</p>
 
 <h3>Concurrent Statements:</h3>
