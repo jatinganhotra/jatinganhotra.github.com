@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Integer Limits - blog@silverSpoon</title>
+  <title>Concurrent and Sequential statements in Verilog - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Category: Integer Limits">
+  <meta name="description" content="This is a brief post for beginners to Verilog language, coming from a C/Java background.
+Verilog differs from a conventional programming language in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.comblog/categories/integer-limits/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -85,36 +86,120 @@ function googleTranslateElementInit() {
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Integer Limits</h1>
+    
+      <h1 class="entry-title">Concurrent and Sequential Statements in Verilog</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-24T22:32:00+05:30" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>This is a brief post for beginners to Verilog language, coming from a C/Java background.
+Verilog  differs from a conventional programming language in the sense that the execution of statements is not strictly sequential. Different code blocks are executed concurrently as opposed to the sequential execution of most programming languages. So, a beginner might get  perplexed, as to what is concurrent and what is not !!</p>
 
-  
-  <h2>2012</h2>
+<h3>Concurrent Statements:</h3>
 
-<article>
-  
-<h1><a href="/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">Integer Limits and Types In C/C++</a></h1>
-<time datetime="2012-08-25T10:20:00+05:30" pubdate><span class='month'>Aug</span> <span class='day'>25</span> <span class='year'>2012</span></time>
+<p>All statements in Verilog are concurrent (unless they are inside a sequential block as discussed later). Concurrent means that the operations described in each line take place in parallel.
+The commonly used concurrent constructs are gate instantiation and the continuous assignment statement.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>, <a class='category' href='/blog/categories/integer-limits/'>Integer Limits</a></span>
-</footer>
+<p>Note that no net should be assigned a value more than once with concurrent statements.e.g<br/>
+<code>assign sum = a + b + c;</code><br/>
+can be re-written as<br/>
+<code>assign sum = a + b;</code><br/>
+<code>assign sum = sum + c;</code><br/>
+but, although equivalent sequentially, it’s incorrect as both statements are concurrent, so the value of sum is indeterminate.</p>
+
+<h3>Sequential Statements:</h3>
+
+<p>Sequential statements are similar to statements in a normal programming language. A sequence of statements is regarded as describing operations that take place one after the other instead of at the same time.</p>
+
+<ul>
+<li>All sequential Verilog statements must be inside a procedural block.</li>
+<li>Sequential statements are placed inside a begin/end block and executed in sequential order within the block. However, the blocks themselves are executed concurrently.</li>
+<li>Verilog statements outside any process block are interpreted as concurrent statements and different procedural blocks execute concurrently.</li>
+</ul>
 
 
-</article>
-
+<p>The commonly used sequential constructs are:<br/>
+* <em>Initial</em> and <em>always</em> procedural blocks: <em>Initial</em> blocks start execution at time zero and execute only once. Always blocks loop to execute over and over again, and as the name suggests, they execute always.<br/>
+* <em>if, case</em> structures, <em>for and while loops</em>: Always appear inside an always block.<br/>
+Note that multiple assignment of values is allowed inside a procedural block.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jatin Ganhotra(@silverSpoon)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-24T22:32:00+05:30" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/" title="Previous Post: C++ - Variable Declaration in 'if' expression">&laquo; C++ - Variable Declaration in 'if' expression</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -230,7 +315,10 @@ function googleTranslateElementInit() {
       var disqus_shortname = 'silverspoon';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

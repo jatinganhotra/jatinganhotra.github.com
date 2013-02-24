@@ -4,7 +4,7 @@
   <title><![CDATA[blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2013-02-09T12:51:26+05:30</updated>
+  <updated>2013-02-24T23:55:58+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Concurrent and Sequential statements in Verilog]]></title>
+    <link href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/"/>
+    <updated>2013-02-24T22:32:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog</id>
+    <content type="html"><![CDATA[<p>This is a brief post for beginners to Verilog language, coming from a C/Java background.
+Verilog  differs from a conventional programming language in the sense that the execution of statements is not strictly sequential. Different code blocks are executed concurrently as opposed to the sequential execution of most programming languages. So, a beginner might get  perplexed, as to what is concurrent and what is not !!</p>
+
+<h3>Concurrent Statements:</h3>
+
+<p>All statements in Verilog are concurrent (unless they are inside a sequential block as discussed later). Concurrent means that the operations described in each line take place in parallel.
+The commonly used concurrent constructs are gate instantiation and the continuous assignment statement.</p>
+
+<p>Note that no net should be assigned a value more than once with concurrent statements.e.g<br/>
+<code>assign sum = a + b + c;</code><br/>
+can be re-written as<br/>
+<code>assign sum = a + b;</code><br/>
+<code>assign sum = sum + c;</code><br/>
+but, although equivalent sequentially, it’s incorrect as both statements are concurrent, so the value of sum is indeterminate.</p>
+
+<h3>Sequential Statements:</h3>
+
+<p>Sequential statements are similar to statements in a normal programming language. A sequence of statements is regarded as describing operations that take place one after the other instead of at the same time.</p>
+
+<ul>
+<li>All sequential Verilog statements must be inside a procedural block.</li>
+<li>Sequential statements are placed inside a begin/end block and executed in sequential order within the block. However, the blocks themselves are executed concurrently.</li>
+<li>Verilog statements outside any process block are interpreted as concurrent statements and different procedural blocks execute concurrently.</li>
+</ul>
+
+
+<p>The commonly used sequential constructs are:<br/>
+* <em>Initial</em> and <em>always</em> procedural blocks: <em>Initial</em> blocks start execution at time zero and execute only once. Always blocks loop to execute over and over again, and as the name suggests, they execute always.<br/>
+* <em>if, case</em> structures, <em>for and while loops</em>: Always appear inside an always block.<br/>
+Note that multiple assignment of values is allowed inside a procedural block.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[C++ - Variable Declaration in 'if' expression]]></title>
