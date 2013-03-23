@@ -47,6 +47,7 @@ While searching for alternatives, I tried my hands on [**Intense Debate**](http:
 <br/>
 <br/>
 <br/>
+<br/>
 If Disqus plans to make these _Discovery Ads_ permanent in future, I
 plan to switch over to **IntenseDebate**, if the login options are enhanced.
 
