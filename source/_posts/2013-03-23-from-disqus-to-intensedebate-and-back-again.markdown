@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "From Disqus to IntenseDebate and back again"
+title: "From Disqus to IntenseDebate & back again"
 date: 2013-03-23 13:48
 comments: true
 author: Jatin Ganhotra(@silverSpoon)
@@ -23,7 +23,7 @@ I was flabbergasted when I went to my [Tech Blog](http://jatinganhotra.com) yest
 {% img /images/Disqus_Discovery_Ads.png 650 200 Disqus Discovery Ads %}
 
 **Disqus**, how could you? Come on.!!  
-I don't want ads on my blog. I hate ads. Now I have to remove you. But where will I turn? But, there's a way this **New Promoted Discovery** can be turned off. Phew !! :)  
+I don't want ads on my blog. I hate ads. Now I have to remove you. But where will I turn? Fortunately, there's a way this **New Promoted Discovery** can be turned off. Phew !! :)  
 
 <br/>
 {% img right /images/Disqus_Discovery_settings.png 500 150 Disqus Discovery Settings %}
@@ -41,14 +41,14 @@ While searching for alternatives, I tried my hands on [**Intense Debate**](http:
 {% img right /images/IntenseDebate_comment_box.png 500 150 Disqus Discovery Settings %}  
 <br/>
 <br/>
+<br/>
 #### IntenseDebate Commenting Dialog  
 
-
+<br/>
 <br/>
 <br/>
 If Disqus plans to make these _Discovery Ads_ permanent in future, I
-plan to switch over to **IntenseDebate**, but I urge you to enhance the
-login options. My 2 cents :)
+plan to switch over to **IntenseDebate**, if the login options are enhanced.
 
 
 
