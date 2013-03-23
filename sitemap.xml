@@ -2,42 +2,48 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/</loc>
-        <lastmod>2012-12-25T15:39:56+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/</loc>
-        <lastmod>2012-12-25T15:32:46+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/</loc>
-        <lastmod>2012-12-25T15:32:21+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/
         </loc>
-        <lastmod>2012-12-26T17:54:46+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/
         </loc>
-        <lastmod>2012-12-27T03:00:50+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/
         </loc>
-        <lastmod>2013-02-09T12:47:14+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/
         </loc>
-        <lastmod>2013-02-25T00:10:11+05:30</lastmod>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/
+        </loc>
+        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/archives/</loc>
-        <lastmod>2013-02-25T00:10:11+05:30</lastmod>
+        <lastmod>2013-03-23T15:17:31+05:30</lastmod>
     </url>
 </urlset>
