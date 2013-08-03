@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Concurrent and Sequential statements in Verilog - blog@silverSpoon</title>
+  <title>Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000 - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; This is a brief post for beginners to Verilog language, coming &hellip;">
+  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; As a software developer, I spend about 6-8 hours typing on a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -89,7 +89,7 @@ function googleTranslateElementInit() {
   
   <header>
     
-      <h1 class="entry-title">Concurrent and Sequential Statements in Verilog</h1>
+      <h1 class="entry-title">Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000</h1>
     
     
       <p class="meta">
@@ -105,7 +105,7 @@ function googleTranslateElementInit() {
   
 
 
-<time datetime="2013-02-24T22:32:00+05:30" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+<time datetime="2013-06-29T11:05:00+05:30" pubdate data-updated="true">Jun 29<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -125,36 +125,28 @@ function googleTranslateElementInit() {
 <BR>&nbsp;<BR>
 
 
-<p>This is a brief post for beginners to Verilog language, coming from a C/Java background.
-Verilog  differs from a conventional programming language in the sense that the execution of statements is not strictly sequential. Different code blocks are executed concurrently as opposed to the sequential execution of most programming languages. So, a beginner might get  perplexed, as to what is concurrent and what is not !!</p>
+<p>As a software developer, I spend about 6-8 hours typing on a typical day. My search for a better keyboard began, when I started having wrist pain and my fingers felt enervated after a few hours. On doing some research, I found that these are the symptoms of an <a href="http://en.wikipedia.org/wiki/Repetitive_strain_injury">Repetitive Strain Injury(RSI)</a>. Other than maintaining a good posture while sitting, I started investigating keyboards which allowed writing with ease and placed my wrists in a comfortable position.</p>
 
-<h3>Concurrent Statements:</h3>
+<p>Many questions and articles such as:<br/>
+ - <a href="http://programmers.stackexchange.com/a/2266">Programmers Stack Exchange - What are good keyboards for programming?</a><br/>
+ - <a href="https://www.quora.com/Computer-Programming/What-is-the-best-keyboard-for-a-programmer">Quora - What-is-the-best-keyboard-for-a-programmer</a></p>
 
-<p>All statements in Verilog are concurrent (unless they are inside a sequential block as discussed later). Concurrent means that the operations described in each line take place in parallel.
-The commonly used concurrent constructs are gate instantiation and the continuous assignment statement.</p>
+<p>led me to <a href="http://www.microsoft.com/hardware/en-us/p/natural-ergonomic-keyboard-4000/B2M-00012">Microsoft Natural Ergonomic Keyboard 4000</a>.</p>
 
-<p>Note that no net should be assigned a value more than once with concurrent statements.e.g<br/>
-<code>assign sum = a + b + c;</code><br/>
-can be re-written as<br/>
-<code>assign sum = a + b;</code><br/>
-<code>assign sum = sum + c;</code><br/>
-but, although equivalent sequentially, it’s incorrect as both statements are concurrent, so the value of sum is indeterminate.</p>
+<p><img class="center" src="/images/Microsoft_Natural_Ergonomic_keyboard.jpg" title="Microsoft Natural Ergonomic Keyboard" ></p>
 
-<h3>Sequential Statements:</h3>
+<p><strong>Microsoft Natural Ergonomic Keyboard 4000</strong> is an ergonomic split-style keyboard which allows you to rest your wrists against the plush palm rest in a relaxed, natural angle with this keyboard’s curved key bed, ergonomic arc and reversed slope. The wrist pad is made of a nicely textured faux leather material with a tiny bit of padding which feels both comfortable and durable.</p>
 
-<p>Sequential statements are similar to statements in a normal programming language. A sequence of statements is regarded as describing operations that take place one after the other instead of at the same time.</p>
+<p><img class="center" src="/images/Microsoft_Natural_Ergonomic_keyboard_reverse_slope.jpg" title="Reverse Slope" ><br/>
+The <em>reverse slope</em> helps your hand and wrist rest more naturally. You can use the keyboard in the reversed slope position or with the front riser, depending on which of the two positions align your wrist perfectly.</p>
 
-<ul>
-<li>All sequential Verilog statements must be inside a procedural block.</li>
-<li>Sequential statements are placed inside a begin/end block and executed in sequential order within the block. However, the blocks themselves are executed concurrently.</li>
-<li>Verilog statements outside any process block are interpreted as concurrent statements and different procedural blocks execute concurrently.</li>
-</ul>
+<p>Apart from comfort, there are quick and customizable ways to reach files, folders, and web pages with handy hot keys. Yes, the keyboard does come with software for the programmable keys and extra functions. Sadly, not for Linux versions e.g CentOS, due to which I haven’t been able to customize it further at work. The natural alignment of wrists and fingers has given me so much relief that I&#8217;ve never felt that I&#8217;m missing out on a lot of customisations that it provides. I do plan to try it out with my Macbook Pro sometime and look at the customisations being offered.</p>
 
+<p>However, there is one area where the keyboard can definitely improve. The space key is a little bit stiff, especially when pressed around the corners. I’ve got used to it over time and so would any other user, but it’s just that, it irks you sometimes as you have to press it again.</p>
 
-<p>The commonly used sequential constructs are:<br/>
-* <em>Initial</em> and <em>always</em> procedural blocks: <em>Initial</em> blocks start execution at time zero and execute only once. Always blocks loop to execute over and over again, and as the name suggests, they execute always.<br/>
-* <em>if, case</em> structures, <em>for and while loops</em>: Always appear inside an always block.<br/>
-Note that multiple assignment of values is allowed inside a procedural block.</p>
+<p>Overall, it’s a very high quality keyboard and anyone that spends a significant amount of time working with computers will be able to appreciate the keyboard just after 1-2 days of adjustment. I&#8217;m very happy with my purchase and would highly recommend this keyboard to my fellow programmers :)</p>
+
+<p>If you’re thinking of purchasing it, rush to the link <a href="http://www.amazon.com/Microsoft-Natural-Ergonomic-Keyboard-4000/dp/B000A6PPOK/ref=pd_sim_e_5">Amazon - Microsoft Natural Ergonomic Keyboard 4000</a>. Amazon is offering a huge 15$ discount, avail it while it lasts.</p>
 </div>
 
 
@@ -177,12 +169,12 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
   
 
 
-<time datetime="2013-02-24T22:32:00+05:30" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+<time datetime="2013-06-29T11:05:00+05:30" pubdate data-updated="true">Jun 29<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/verilog/'>Verilog</a>
+    <a class='category' href='/blog/categories/keyboard-review/'>Keyboard Review</a>, <a class='category' href='/blog/categories/microsoft-natural-ergonomic-keyboard/'>Microsoft Natural Ergonomic Keyboard</a>
   
 </span>
 
@@ -191,7 +183,7 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -204,10 +196,8 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/" title="Previous Post: C++ - Variable Declaration in 'if' expression">&laquo; C++ - Variable Declaration in 'if' expression</a>
+        <a class="basic-alignment left" href="/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/" title="Previous Post: From Disqus to IntenseDebate & back again">&laquo; From Disqus to IntenseDebate & back again</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/" title="Next Post: From Disqus to IntenseDebate & back again">From Disqus to IntenseDebate & back again &raquo;</a>
       
     </p>
   </footer>
@@ -334,8 +324,8 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/';
-        var disqus_url = 'http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/';
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/';
         var disqus_script = 'embed.js';
       
     (function () {
