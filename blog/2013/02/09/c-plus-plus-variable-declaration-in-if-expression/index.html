@@ -303,6 +303,15 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
 </section>
 
 
+
+<!--  Using Twitter Widgets instead of the in-built twitter aside by Octopress -->
+<section>
+<h1>Latest Tweets</h1>
+</section>
+<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/_silverSpoon" data-widget-id="371202938770694144">Tweets by @_silverSpoon</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
@@ -330,23 +339,6 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("_silverSpoon", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/_silverSpoon" class="twitter-follow-button" data-show-count="false">Follow @_silverSpoon</a>
-  
 </section>
 
 
