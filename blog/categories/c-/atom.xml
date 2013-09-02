@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/c-/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2013-08-24T15:11:21+05:30</updated>
+  <updated>2013-09-02T14:10:49+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Comparison is always false due to limited range of data type]]></title>
+    <link href="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/"/>
+    <updated>2013-07-21T21:17:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>This is a small and crisp post over this warning message that appeared quite strange at first. On a closer look though, the reason behind it was pretty clear and straight-forward.</p>
+
+<blockquote><p>warning: comparison is always false due to limited range of data type</p></blockquote>
+
+<p>I was just playing around with <code>string.find()</code> function, when I got this warning message.
+Here is a simple piece of code which, when run on a 64-bit architecture, will produce the above warning.</p>
+
+<p>``` c</p>
+
+<pre><code>string subject = "A[1]";
+string search = "1";
+unsigned location = subject.find(search);    // location is unsigned
+if( location == std::string::npos)
+    cout &lt;&lt; " true";
+else
+    cout &lt;&lt; " false";
+</code></pre>
+
+<p>```</p>
+
+<p>The catch here is that <code>std::string::npos</code> returns <code>size_t</code>, which represents the unsigned native integer size on current architecture.<br/>
+So, on a 32-bit architecture:<br/>
+ - both <code>unsigned</code> and <code>size_t</code> would have the same size,<br/>
+However, on a 64-bit machine:<br/>
+ - the <code>unsigned</code> would be size - 4 and <code>size_t</code> would be size - 8.<br/>
+Hence, the comparison would be always false when run on a 64-bit machine.</p>
+
+<p>So, the proper fix for the above code is to make location variable of type <strong>size_t</strong>.</p>
+
+<p>For more information on <code>size_t</code>, refer to my blog post on <a href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">Integer Limits and Types in C/C++</a> , which explains the sizes of basic C++ types.</p>
+
+<p><em>Note:</em> If you're seeing the same warning message, but not around the <code>string.find()</code> function, try <strong>StackOverflow</strong> for help. The warning message is generic and can occur at places where a comparison is being done between types of different sizes.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[C++ - Variable Declaration in 'if' expression]]></title>

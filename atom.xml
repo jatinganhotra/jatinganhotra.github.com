@@ -4,7 +4,7 @@
   <title><![CDATA[blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2013-08-24T15:11:21+05:30</updated>
+  <updated>2013-09-02T14:10:49+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Comparison is always false due to limited range of data type]]></title>
+    <link href="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/"/>
+    <updated>2013-07-21T21:17:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>This is a small and crisp post over this warning message that appeared quite strange at first. On a closer look though, the reason behind it was pretty clear and straight-forward.</p>
+
+<blockquote><p>warning: comparison is always false due to limited range of data type</p></blockquote>
+
+<p>I was just playing around with <code>string.find()</code> function, when I got this warning message.
+Here is a simple piece of code which, when run on a 64-bit architecture, will produce the above warning.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">string</span> <span class="n">subject</span> <span class="o">=</span> <span class="s">&quot;A[1]&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">string</span> <span class="n">search</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="kt">unsigned</span> <span class="n">location</span> <span class="o">=</span> <span class="n">subject</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">search</span><span class="p">);</span>    <span class="c1">// location is unsigned</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span> <span class="n">location</span> <span class="o">==</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; true&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; false&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The catch here is that <code>std::string::npos</code> returns <code>size_t</code>, which represents the unsigned native integer size on current architecture.<br/>
+So, on a 32-bit architecture:<br/>
+ - both <code>unsigned</code> and <code>size_t</code> would have the same size,<br/>
+However, on a 64-bit machine:<br/>
+ - the <code>unsigned</code> would be size - 4 and <code>size_t</code> would be size - 8.<br/>
+Hence, the comparison would be always false when run on a 64-bit machine.</p>
+
+<p>So, the proper fix for the above code is to make location variable of type <strong>size_t</strong>.</p>
+
+<p>For more information on <code>size_t</code>, refer to my blog post on <a href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">Integer Limits and Types in C/C++</a> , which explains the sizes of basic C++ types.</p>
+
+<p><em>Note:</em> If you&#8217;re seeing the same warning message, but not around the <code>string.find()</code> function, try <strong>StackOverflow</strong> for help. The warning message is generic and can occur at places where a comparison is being done between types of different sizes.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000]]></title>

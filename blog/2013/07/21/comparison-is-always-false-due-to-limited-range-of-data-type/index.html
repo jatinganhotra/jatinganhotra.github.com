@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Blogging-tips - blog@silverSpoon</title>
+  <title>Comparison is always false due to limited range of data type - blog@silverSpoon</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Category: Blogging-tips">
+  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; This is a small and crisp post over this warning message that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.comblog/categories/blogging-tips/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -85,36 +85,143 @@ function googleTranslateElementInit() {
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Blogging-tips</h1>
+    
+      <h1 class="entry-title">Comparison Is Always False Due to Limited Range of Data Type</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-21T21:17:00+05:30" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/">Add Google Website Translator to your Octopress Blog</a></h1>
-<time datetime="2012-12-26T20:06:00+05:30" pubdate><span class='month'>Dec</span> <span class='day'>26</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/blog/'>Blog</a>, <a class='category' href='/blog/categories/blogging-tips/'>Blogging-tips</a>, <a class='category' href='/blog/categories/google-website-translator/'>Google Website Translator</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a></span>
-</footer>
-
-
-</article>
-
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
 </div>
 
+
+<BR>&nbsp;<BR>
+
+
+<p>This is a small and crisp post over this warning message that appeared quite strange at first. On a closer look though, the reason behind it was pretty clear and straight-forward.</p>
+
+<blockquote><p>warning: comparison is always false due to limited range of data type</p></blockquote>
+
+<p>I was just playing around with <code>string.find()</code> function, when I got this warning message.
+Here is a simple piece of code which, when run on a 64-bit architecture, will produce the above warning.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">string</span> <span class="n">subject</span> <span class="o">=</span> <span class="s">&quot;A[1]&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">string</span> <span class="n">search</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="kt">unsigned</span> <span class="n">location</span> <span class="o">=</span> <span class="n">subject</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">search</span><span class="p">);</span>    <span class="c1">// location is unsigned</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span> <span class="n">location</span> <span class="o">==</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; true&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; false&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The catch here is that <code>std::string::npos</code> returns <code>size_t</code>, which represents the unsigned native integer size on current architecture.<br/>
+So, on a 32-bit architecture:<br/>
+ - both <code>unsigned</code> and <code>size_t</code> would have the same size,<br/>
+However, on a 64-bit machine:<br/>
+ - the <code>unsigned</code> would be size - 4 and <code>size_t</code> would be size - 8.<br/>
+Hence, the comparison would be always false when run on a 64-bit machine.</p>
+
+<p>So, the proper fix for the above code is to make location variable of type <strong>size_t</strong>.</p>
+
+<p>For more information on <code>size_t</code>, refer to my blog post on <a href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/">Integer Limits and Types in C/C++</a> , which explains the sizes of basic C++ types.</p>
+
+<p><em>Note:</em> If you&#8217;re seeing the same warning message, but not around the <code>string.find()</code> function, try <strong>StackOverflow</strong> for help. The warning message is generic and can occur at places where a comparison is being done between types of different sizes.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jatin Ganhotra(@silverSpoon)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-21T21:17:00+05:30" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/coding-tips/'>Coding Tips</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/" data-via="_silverSpoon" data-counturl="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/" title="Previous Post: Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000">&laquo; Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -222,7 +329,10 @@ function googleTranslateElementInit() {
       var disqus_shortname = 'silverspoon';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
