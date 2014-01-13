@@ -68,14 +68,22 @@ function googleTranslateElementInit() {
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+
   
-<form action="http://google.com/search" method="get">
+  <!-- <form action="http://google.com/search" method="get"> -->
+<form method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:jatinganhotra.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    <input type="text" class="addsearch search" placeholder="Search"/>
+    <!--  
+          Commenting the original search option in favor of Addsearch.
+          <input type="hidden" name="q" value="site:jatinganhotra.com" />
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    -->
   </fieldset>
 </form>
   
+
+
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
@@ -371,7 +379,7 @@ class Master
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jatin Ganhotra -
+  Copyright &copy; 2014 - Jatin Ganhotra -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -431,5 +439,6 @@ class Master
 
 
 
+<script type="text/javascript" src="//addsearch.com/js/?key=15f0805faf5d26400ef9142ce43787c5"></script>
 </body>
 </html>

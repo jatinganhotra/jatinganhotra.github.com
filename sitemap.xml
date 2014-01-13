@@ -2,60 +2,60 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/</loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/</loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/</loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/
         </loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/
         </loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/
         </loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/
         </loc>
-        <lastmod>2013-03-23T15:26:11+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/
         </loc>
-        <lastmod>2013-03-23T15:48:32+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/
         </loc>
-        <lastmod>2013-08-03T17:26:14+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/
         </loc>
-        <lastmod>2013-09-02T14:09:09+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
     <url>
         <loc>http://jatinganhotra.com/blog/archives/</loc>
-        <lastmod>2013-09-02T14:09:09+05:30</lastmod>
+        <lastmod>2014-01-13T23:20:04+05:30</lastmod>
     </url>
 </urlset>
