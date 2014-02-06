@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octave | blog@silverSpoon]]></title>
+  <link href="http://jatinganhotra.com/blog/categories/octave/atom.xml" rel="self"/>
+  <link href="http://jatinganhotra.com/"/>
+  <updated>2014-02-06T22:22:05+05:30</updated>
+  <id>http://jatinganhotra.com/</id>
+  <author>
+    <name><![CDATA[Jatin Ganhotra]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Octave on OS X 10.9 Mavericks]]></title>
+    <link href="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/"/>
+    <updated>2014-01-21T21:25:00+05:30</updated>
+    <id>http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>If you upgraded to OS X 10.9 Mavericks and have started to like the latest enhancements in Finder, new iBooks and Maps applications etc., installing Octave is going to make you forget all of it. The installation process is a herculean task and you better pray to God that you don't run into much issues like I did.</p>
+
+<p>I found decent help from here - <a href="http://ntraft.com/getting-octave-to-work-on-mountain-lion/">Getting Octave to Just Goddamn Work Already on OS X 10.8 Mountain Lion</a>, thanks to <a href="http://ntraft.com">Neil Traft</a> for putting it together.</p>
+
+<p>But that's only half of the story as you've upgraded to OS X 10.9 Mavericks. Here, I am writing down steps that you should follow in the exact order and also tips to solve issues all by yourself, if you run into any.</p>
+
+<p><strong>P.S.</strong> <em>Please don't ignore any warnings or any messages that you feel might be irrelevant. If one piece doesn't fit well, the whole thing may fall later.</em></p>
+
+<h4>1. Install the Xcode Command Line Tools</h4>
+
+<p>Installing command line tools in OSX 10.9 Mavericks has changed slightly than previous versions of MAC OS X. Now you don't have to install Xcode , you can install Command Line Tools stand alone.<br/>
+Type <code>xcode-select --install</code> in terminal and choose <em>Install</em> option from the pop-up.<br/>
+This may take some time depending on your Internet connection.</p>
+
+<h4>2. Install Homebrew</h4>
+
+<p>I'm assuming you know about Homebrew, but if you don't do yourself a favor, my friend and install it by following <a href="https://github.com/mxcl/homebrew/wiki/installation">Homebrew's installation instructions</a>.</p>
+
+<h4>3. Install XQuartz</h4>
+
+<p>Install XQuartz from <a href="https://xquartz.macosforge.org/landing/">here</a>. In the past this came installed on OS X, but as of Mountain Lion it is no longer included. So go fix that.</p>
+
+<h4>4. Updating and upgrading Homebrew</h4>
+
+<p>If you had Homebrew installed already, update to the latest package definitions. Don't skip this step out of mere laziness.<br/>
+<code>$ brew update &amp;&amp; brew upgrade</code><br/>
+This may take some time. So, go get yourself a cup of coffee and better have some beer. The path ahead could be tough.</p>
+
+<h4>5. Import the scientific computing packages</h4>
+
+<p><code>$ brew tap homebrew/science</code><br/>
+If you see any warnings here, run <code>brew doctor</code> and follow what it says. Let me repeat. Don't be smart and just do what the doctor says!!! The doctor is always right.<br/>
+Once you have followed the steps specifed by <code>brew doctor</code>, run<br/>
+<code>$ brew untap homebrew/science</code> and rerun<br/>
+<code>$ brew tap homebrew/science</code>.</p>
+
+<h4>6. Install gfortran</h4>
+
+<p>To install Octave, you have to install <code>gfortran</code> first.<br/>
+<code>$ brew install gfortran</code><br/>
+Pay close attention to any messages and warnings during the install. If everything looks good, jump to the next Step.</p>
+
+<p>If you see any warnings like: <code>/usr/bin/install_name tool: malformed object (unknown load command)</code>,<br/>
+go and visit this <a href="https://github.com/Homebrew/homebrew/issues/25665">Github issue</a> that I raised for more details.</p>
+
+<p>If you're facing any other problem:<br/>
+  * run <code>brew doctor</code> first and do what the doctor says!!!<br/>
+  * Re-run the command again and see if the issue got resolved.<br/>
+  * If not, go ahead and raise a new issue at <a href="https://github.com/Homebrew/homebrew/issues">Homebrew Issues</a>.</p>
+
+<h4>7. Installing Octave</h4>
+
+<p><code>$ brew install octave</code><br/>
+If everything looks good, jump to the next Step.</p>
+
+<p>If brew complains about not having a formula for octave, the following command should fix it:
+<code>$ brew tap --repair</code></p>
+
+<p>If you get an error like <code>do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1</code> then build with '<em>--without-docs</em>' option. This is because you don't have the Tex package installed. Alternatively, you can also download the 2.3GB <em>MacTeX.pkg</em> from <a href="http://tug.org/mactex/">here</a>, install it and rerun the install command.</p>
+
+<p>If you run into any other issue, run <code>brew doctor</code> first and do what the doctor says!!! Re-run the command again and   see if the issue got resolved. If not, go ahead and raise a new issue at <a href="https://github.com/Homebrew/homebrew-science/issues">Homebrew-science Issues</a>.</p>
+
+<h4>8. Install gnuplot</h4>
+
+<p>For native drawing support, we'll install gnuplot.<br/>
+<code>$ brew install gnuplot</code></p>
+
+<h4>9. Setup Octave startup file</h4>
+
+<p>Edit your Octave startup file or create a new one:<br/>
+<code>$ vim ~/.octaverc</code> and add the line <code>setenv GNUTERM x11</code>.<br/>
+Don't forget to save the file.</p>
+
+<h4>10. Create a launcher app with Applescript [<em>Optional</em>]</h4>
+
+<p>Open the "AppleScript Editor" application and write the following text in the editor window:
+<code>
+tell application "Terminal"
+ do script "`which octave`; exit"
+end tell
+</code>
+Save it as an application 'Octave.app' and then navigate it to the "Applications" folder.</p>
+
+<p>Now for the ultimate fix: Reboot your machine!!! Yep, until you restart your Mac, Octave will be unable to launch XQuartz on its own, and you won't be able to plot anything.</p>
+
+<p>Once you're back in, open the terminal, fire up Octave, and plot a <em>sombrero()</em>.<strong> You're all set!!!</strong></p>
+]]></content>
+  </entry>
+  
+</feed>
