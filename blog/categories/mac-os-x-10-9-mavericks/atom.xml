@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac OS X 10.9 Mavericks | blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/blog/categories/mac-os-x-10-9-mavericks/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2014-02-06T22:22:05+05:30</updated>
+  <updated>2014-04-23T19:47:51+05:30</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -87,14 +87,22 @@ If everything looks good, jump to the next Step.</p>
 <p>If brew complains about not having a formula for octave, the following command should fix it:
 <code>$ brew tap --repair</code></p>
 
-<p>If you get an error like <code>do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1</code> then build with '<em>--without-docs</em>' option. This is because you don't have the Tex package installed. Alternatively, you can also download the 2.3GB <em>MacTeX.pkg</em> from <a href="http://tug.org/mactex/">here</a>, install it and rerun the install command.</p>
+<p>If you get an error like <code>do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1</code> then build with<br/>
+<code>$ brew install octave --without-docs</code> option.<br/>
+(<em>Thanks Pierre and Kahini for the correction about <code>--without-docs</code>, previously <code>-without-docs</code></em>).</p>
+
+<p>This is because you don't have the Tex package installed. Alternatively, you can also download the 2.3GB <em>MacTeX.pkg</em> from <a href="http://tug.org/mactex/">here</a>, install it and rerun the install command.<br/>
+(<strong>Update:</strong> Don't try this !!! I installed MacTex package but the Octave installation still failed. I raised an issue here - <a href="https://github.com/Homebrew/homebrew-science/issues/796">Homebrew-science Issues</a> but with no help.)</p>
 
 <p>If you run into any other issue, run <code>brew doctor</code> first and do what the doctor says!!! Re-run the command again and   see if the issue got resolved. If not, go ahead and raise a new issue at <a href="https://github.com/Homebrew/homebrew-science/issues">Homebrew-science Issues</a>.</p>
 
 <h4>8. Install gnuplot</h4>
 
 <p>For native drawing support, we'll install gnuplot.<br/>
-<code>$ brew install gnuplot</code></p>
+<code>$ brew install gnuplot</code><br/>
+(<strong>Update:</strong> As <em>phseven</em> pointed out, gnuplot will be automatically installed with octave, but in some cases it won't support X11.) For such cases, do the following:<br/>
+<code>$ brew uninstall gnuplot</code><br/>
+<code>$ brew install gnuplot --with-x</code></p>
 
 <h4>9. Setup Octave startup file</h4>
 
