@@ -68,13 +68,21 @@ If everything looks good, jump to the next Step.
 If brew complains about not having a formula for octave, the following command should fix it:
 `$ brew tap --repair`  
 
-If you get an error like `do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1` then build with '_--without-docs_' option. This is because you don't have the Tex package installed. Alternatively, you can also download the 2.3GB _MacTeX.pkg_ from [here](http://tug.org/mactex/), install it and rerun the install command.  
+If you get an error like `do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1` then build with  
+`$ brew install octave --without-docs` option.  
+(_Thanks Pierre and Kahini for the correction about `--without-docs`, previously `-without-docs`_).  
+
+This is because you don't have the Tex package installed. Alternatively, you can also download the 2.3GB _MacTeX.pkg_ from [here](http://tug.org/mactex/), install it and rerun the install command.  
+(__Update:__ Don't try this !!! I installed MacTex package but the Octave installation still failed. I raised an issue here - [Homebrew-science Issues](https://github.com/Homebrew/homebrew-science/issues/796) but with no help.)
 
 If you run into any other issue, run `brew doctor` first and do what the doctor says!!! Re-run the command again and   see if the issue got resolved. If not, go ahead and raise a new issue at [Homebrew-science Issues](https://github.com/Homebrew/homebrew-science/issues).  
 
 #### 8. Install gnuplot  
 For native drawing support, we'll install gnuplot.  
 `$ brew install gnuplot`  
+(__Update:__ As _phseven_ pointed out, gnuplot will be automatically installed with octave, but in some cases it won't support X11.) For such cases, do the following:  
+`$ brew uninstall gnuplot`  
+`$ brew install gnuplot --with-x`  
 
 #### 9. Setup Octave startup file  
 Edit your Octave startup file or create a new one:  
