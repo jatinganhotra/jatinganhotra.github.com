@@ -4,7 +4,7 @@
   <title><![CDATA[blog@silverSpoon]]></title>
   <link href="http://jatinganhotra.com/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2014-04-23T19:47:51+05:30</updated>
+  <updated>2014-08-18T16:25:37-05:00</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Installing Octave on OS X 10.9 Mavericks]]></title>
     <link href="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/"/>
-    <updated>2014-01-21T21:25:00+05:30</updated>
+    <updated>2014-01-21T21:25:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -133,7 +133,7 @@ Don&#8217;t forget to save the file.</p>
   <entry>
     <title type="html"><![CDATA[Comparison is always false due to limited range of data type]]></title>
     <link href="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/"/>
-    <updated>2013-07-21T21:17:00+05:30</updated>
+    <updated>2013-07-21T21:17:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -188,7 +188,7 @@ Hence, the comparison would be always false when run on a 64-bit machine.</p>
   <entry>
     <title type="html"><![CDATA[Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000]]></title>
     <link href="http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/"/>
-    <updated>2013-06-29T11:05:00+05:30</updated>
+    <updated>2013-06-29T11:05:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -229,7 +229,7 @@ The <em>reverse slope</em> helps your hand and wrist rest more naturally. You ca
   <entry>
     <title type="html"><![CDATA[From Disqus to IntenseDebate & back again]]></title>
     <link href="http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/"/>
-    <updated>2013-03-23T13:48:00+05:30</updated>
+    <updated>2013-03-23T13:48:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -305,7 +305,7 @@ plan to switch over to <strong>IntenseDebate</strong>, if the login options are 
   <entry>
     <title type="html"><![CDATA[Concurrent and Sequential statements in Verilog]]></title>
     <link href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/"/>
-    <updated>2013-02-24T22:32:00+05:30</updated>
+    <updated>2013-02-24T22:32:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -354,7 +354,7 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
   <entry>
     <title type="html"><![CDATA[C++ - Variable Declaration in 'if' expression]]></title>
     <link href="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/"/>
-    <updated>2013-02-09T09:16:00+05:30</updated>
+    <updated>2013-02-09T09:16:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -450,7 +450,7 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
   <entry>
     <title type="html"><![CDATA[Add Google Website Translator to your Octopress Blog]]></title>
     <link href="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/"/>
-    <updated>2012-12-26T20:06:00+05:30</updated>
+    <updated>2012-12-26T20:06:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -533,7 +533,7 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
   <entry>
     <title type="html"><![CDATA[Forward Class Declaration in C++]]></title>
     <link href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/"/>
-    <updated>2012-11-25T21:00:00+05:30</updated>
+    <updated>2012-11-25T21:00:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -639,7 +639,7 @@ class Master
   <entry>
     <title type="html"><![CDATA[Why use GIT and hang CVS?]]></title>
     <link href="http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/"/>
-    <updated>2012-11-03T10:20:00+05:30</updated>
+    <updated>2012-11-03T10:20:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -683,7 +683,7 @@ It covers various aspects where <a href="http://en.wikipedia.org/wiki/Concurrent
   <entry>
     <title type="html"><![CDATA[Integer Limits and Types In C/C++]]></title>
     <link href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/"/>
-    <updated>2012-08-25T10:20:00+05:30</updated>
+    <updated>2012-08-25T10:20:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -748,7 +748,7 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
   <entry>
     <title type="html"><![CDATA[Install MongoDB on Ubuntu]]></title>
     <link href="http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/"/>
-    <updated>2011-11-15T01:33:00+05:30</updated>
+    <updated>2011-11-15T01:33:00-06:00</updated>
     <id>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
