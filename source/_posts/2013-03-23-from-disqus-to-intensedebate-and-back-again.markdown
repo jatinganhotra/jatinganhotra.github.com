@@ -3,7 +3,7 @@ layout: post
 title: "From Disqus to IntenseDebate & back again"
 date: 2013-03-23 13:48
 comments: true
-author: Jatin Ganhotra(@silverSpoon)
+author: Jatin Ganhotra (@jatinganhotra)
 categories: [Disqus, Commenting Systems]
 sharing: true
 footer: true

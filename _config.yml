@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://jatinganhotra.com
-title: blog@silverSpoon
+title: blog@jatinganhotra
 subtitle: render :object => Experience.new
 author: Jatin Ganhotra
 simple_search: http://google.com/search
@@ -17,7 +17,7 @@ date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
-subscribe_email:
+subscribe_email: 
 # RSS feeds can list your email address if you like
 email:
 
@@ -38,14 +38,14 @@ pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
-recent_posts: 5       # Posts in the sidebar Recent Posts section
+recent_posts: 6       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/stackoverflow.html, asides/twitter.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html ]
+default_asides: [custom/asides/about.html, asides/stackoverflow.html, asides/recent_posts.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html ]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -58,13 +58,13 @@ default_asides: [asides/recent_posts.html, asides/stackoverflow.html, asides/twi
 # ----------------------- #
 
 # Github repositories
-github_user: silverSpoon
-github_repo_count: 3
+github_user: jatinganhotra
+github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: false
 
 # Twitter
-twitter_user: _silverSpoon
+twitter_user: JatinGanhotra
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true
@@ -78,7 +78,7 @@ google_plus_one_size: medium
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
 googleplus_user: 102533369051290820501
-googleplus_hidden: false
+googleplus_hidden: true
 
 # Pinboard
 pinboard_user:

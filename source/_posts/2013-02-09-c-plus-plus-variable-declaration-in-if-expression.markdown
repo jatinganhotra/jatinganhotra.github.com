@@ -3,7 +3,7 @@ layout: post
 title: "C++ - Variable Declaration in 'if' expression"
 date: 2013-02-09 09:16
 comments: true
-author: Jatin Ganhotra(@silverSpoon)
+author: Jatin Ganhotra (@jatinganhotra)
 categories: [C, C++, Coding Tips, Variable Declaration]
 sharing: true
 footer: true

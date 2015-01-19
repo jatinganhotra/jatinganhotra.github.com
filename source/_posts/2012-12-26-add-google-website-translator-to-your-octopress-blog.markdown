@@ -3,7 +3,7 @@ layout: post
 title: "Add Google Website Translator to your Octopress Blog"
 date: 2012-12-26 20:06
 comments: true
-author: Jatin Ganhotra(@silverSpoon)
+author: Jatin Ganhotra (@jatinganhotra)
 categories: [Google Website Translator, Octopress, Blogging-tips, Blog]
 sharing: true
 footer: true

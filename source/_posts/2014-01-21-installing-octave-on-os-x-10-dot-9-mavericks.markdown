@@ -3,7 +3,7 @@ layout: post
 title: "Installing Octave on OS X 10.9 Mavericks"
 date: 2014-01-21 21:25
 comments: true
-author: Jatin Ganhotra(@silverSpoon)
+author: Jatin Ganhotra (@jatinganhotra)
 categories: [Mac OS X 10.9 Mavericks, Octave, How to Install]
 sharing: true
 footer: true
