@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Installing Octave on OS X 10.9 Mavericks - blog@jatinganhotra</title>
+  <title>Run &amp; Debug Spark apps in IntelliJ IDEA - blog@jatinganhotra</title>
   <meta name="author" content="Jatin Ganhotra">
 
   
-  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; If you upgraded to OS X 10.9 Mavericks and have started to like &hellip;">
+  <meta name="description" content="Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp; &nbsp; For my current research project, I needed to debug Spark core &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/">
+  <link rel="canonical" href="http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -91,7 +91,7 @@ function googleTranslateElementInit() {
   
   <header>
     
-      <h1 class="entry-title">Installing Octave on OS X 10.9 Mavericks</h1>
+      <h1 class="entry-title">Run &amp; Debug Spark Apps in IntelliJ IDEA</h1>
     
     
       <p class="meta">
@@ -107,7 +107,7 @@ function googleTranslateElementInit() {
   
 
 
-<time datetime="2014-01-21T21:25:00-05:00" pubdate data-updated="true">Jan 21<span>st</span>, 2014</time>
+<time datetime="2015-12-07T22:21:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2015</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -127,17 +127,23 @@ function googleTranslateElementInit() {
 <BR>&nbsp;<BR>
 
 
-<p>If you upgraded to OS X 10.9 Mavericks and have started to like the latest enhancements in Finder, new iBooks and Maps applications etc., installing Octave is going to make you forget all of it. The installation process is a herculean task and you better pray to God that you don&#8217;t run into much issues like I did.</p>
+<p>For my current research project, I needed to debug Spark core source code, to delve deeper
+into the code and figure out the reason behind the unexpected experimental results.</p>
 
-<p>I found decent help from here - <a href="http://ntraft.com/getting-octave-to-work-on-mountain-lion/">Getting Octave to Just Goddamn Work Already on OS X 10.8 Mountain Lion</a>, thanks to <a href="http://ntraft.com">Neil Traft</a> for putting it together.</p>
+<p>I spent days trying to setup everything to debug my application, which ideally should have been
+an hour or 2, considering that Spark is one of the <a href="https://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces50">most active community open-source project on Apache</a>
+right now.</p>
 
-<p>But that&#8217;s only half of the story as you&#8217;ve upgraded to OS X 10.9 Mavericks. Here, I am writing down steps that you should follow in the exact order and also tips to solve issues all by yourself, if you run into any.</p>
+<p>I did find some posts and articles on the Internet and Spark user+dev mailing lists, but they were outdated, didn&#8217;t account for all potential issues and didn&#8217;t cover much details.</p>
 
-<p><strong>P.S.</strong> <em>Please don&#8217;t ignore any warnings or any messages that you feel might be irrelevant. If one piece doesn&#8217;t fit well, the whole thing may fall later.</em></p>
+<p>I finally got everything up and running, so here&#8217;s a post listing down exact steps to get everything setup
+for debugging Spark source code.</p>
+
+<p>This post will cover setting up the environment for Mac OS X, but the same steps should work for any UNIX system.</p>
 
 <h4>1. Install the Xcode Command Line Tools</h4>
 
-<p>Installing command line tools in OSX 10.9 Mavericks has changed slightly than previous versions of MAC OS X. Now you don&#8217;t have to install Xcode , you can install Command Line Tools stand alone.<br/>
+<p>Installing command line tools has changed slightly than previous versions of MAC OS. Now you don&#8217;t have to install Xcode , you can install Command Line Tools stand alone.<br/>
 Type <code>xcode-select --install</code> in terminal and choose <em>Install</em> option from the pop-up.<br/>
 This may take some time depending on your Internet connection.</p>
 
@@ -145,86 +151,126 @@ This may take some time depending on your Internet connection.</p>
 
 <p>I&#8217;m assuming you know about Homebrew, but if you don&#8217;t do yourself a favor, my friend and install it by following <a href="https://github.com/mxcl/homebrew/wiki/installation">Homebrew&#8217;s installation instructions</a>.</p>
 
-<h4>3. Install XQuartz</h4>
+<h4>3. Install Scala</h4>
 
-<p>Install XQuartz from <a href="https://xquartz.macosforge.org/landing/">here</a>. In the past this came installed on OS X, but as of Mountain Lion it is no longer included. So go fix that.</p>
+<p>In Terminal enter</p>
 
-<h4>4. Updating and upgrading Homebrew</h4>
+<p>brew install scala &#8211;with-docs</p>
 
-<p>If you had Homebrew installed already, update to the latest package definitions. Don&#8217;t skip this step out of mere laziness.<br/>
-<code>$ brew update &amp;&amp; brew upgrade</code><br/>
-This may take some time. So, go get yourself a cup of coffee and better have some beer. The path ahead could be tough.</p>
+<h4>4. Download and Install IntelliJ IDEA</h4>
 
-<h4>5. Import the scientific computing packages</h4>
+<p>Hop-over to the JetBrains website and download <a href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA 15</a> (the latest version right now). The Community Edition is free and the same steps should work for any other version too.
+On the first-run, IntelliJ might ask for setting up the Scala featured plugin. Ignore that option, as we will link IntelliJ to our Mac OS&#8217;s Homebrew scala installation.</p>
 
-<p><code>$ brew tap homebrew/science</code><br/>
-If you see any warnings here, run <code>brew doctor</code> and follow what it says. Let me repeat. Don&#8217;t be smart and just do what the doctor says!!! The doctor is always right.<br/>
-Once you have followed the steps specifed by <code>brew doctor</code>, run<br/>
-<code>$ brew untap homebrew/science</code> and rerun<br/>
-<code>$ brew tap homebrew/science</code>.</p>
+<h4>5. Download and Building Spark</h4>
 
-<h4>6. Install gfortran</h4>
+<p>Download the Spark Source Code from the <a href="http://spark.apache.org/downloads.html">Spark website</a> - latest version - Spark 1.5.2 (Nov 09 2015).</p>
 
-<p>To install Octave, you have to install <code>gfortran</code> first.<br/>
-<code>$ brew install gfortran</code><br/>
-Pay close attention to any messages and warnings during the install. If everything looks good, jump to the next Step.</p>
+<p>To produce a Spark package compiled with Scala 2.11, use the -Dscala-2.11 property as mentioned <a href="http://spark.apache.org/docs/latest/building-spark.html#building-for-scala-211">here</a>:</p>
 
-<p>If you see any warnings like: <code>/usr/bin/install_name tool: malformed object (unknown load command)</code>,<br/>
-go and visit this <a href="https://github.com/Homebrew/homebrew/issues/25665">Github issue</a> that I raised for more details.</p>
+<p>./dev/change-scala-version.sh 2.11
+mvn -Pyarn -Phadoop-2.4 -Dscala-2.11 -DskipTests clean package</p>
 
-<p>If you&#8217;re facing any other problem:<br/>
-  * run <code>brew doctor</code> first and do what the doctor says!!!<br/>
-  * Re-run the command again and see if the issue got resolved.<br/>
-  * If not, go ahead and raise a new issue at <a href="https://github.com/Homebrew/homebrew/issues">Homebrew Issues</a>.</p>
+<p>If you get the error -
+org.apache.spark.SparkException: An application name must be set in your configuration
+val configuration = new SparkConf()</p>
 
-<h4>7. Installing Octave</h4>
+<pre><code>            .setAppName("Your Application Name")
+            .setMaster("local");
+</code></pre>
 
-<p><code>$ brew install octave</code><br/>
-If everything looks good, jump to the next Step.</p>
+<p>Install Scala &amp; SBT plugins for IntelliJ before anything</p>
 
-<p>If brew complains about not having a formula for octave, the following command should fix it:
-<code>$ brew tap --repair</code></p>
+<p>When creating your application, follow these steps :-
+1. Create New project
+2. Choose Scala - Scala (Simple module with attached Scala SDK) (Don&#8217;t use SBT)
+3. In project SDK, choose New JDK and select the path to the JAVA JDK Home
+e.g. /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
+4. In Scala SDK, choose Create - Browse and select the path to Scala SDK
+/usr/local/Cellar/scala/2.11.7/libexec</p>
 
-<p>If you get an error like <code>do a web search for TeX and your operating system. make[3]: *** [octave.dvi] Error 1</code> then build with<br/>
-<code>$ brew install octave --without-docs</code> option.<br/>
-(<em>Thanks Pierre and Kahini for the correction about <code>--without-docs</code>, previously <code>-without-docs</code></em>).</p>
+<p>Create New Scala script under src folder named SimpleApp.scala and
+paste the following code - taken from <a href="http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications">Spark QuickStart guide</a></p>
 
-<p>This is because you don&#8217;t have the Tex package installed. Alternatively, you can also download the 2.3GB <em>MacTeX.pkg</em> from <a href="http://tug.org/mactex/">here</a>, install it and rerun the install command.<br/>
-(<strong>Update:</strong> Don&#8217;t try this !!! I installed MacTex package but the Octave installation still failed. I raised an issue here - <a href="https://github.com/Homebrew/homebrew-science/issues/796">Homebrew-science Issues</a> but with no help.)</p>
+<p>/<em> SimpleApp.scala </em>/
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext._
+import org.apache.spark.SparkConf</p>
 
-<p>If you run into any other issue, run <code>brew doctor</code> first and do what the doctor says!!! Re-run the command again and   see if the issue got resolved. If not, go ahead and raise a new issue at <a href="https://github.com/Homebrew/homebrew-science/issues">Homebrew-science Issues</a>.</p>
+<p>object SimpleApp {
+  def main(args: Array[String]) {</p>
 
-<h4>8. Install gnuplot</h4>
+<pre><code>val logFile = "YOUR_SPARK_HOME/README.md" // Should be some file on your system
+val conf = new SparkConf().setAppName("Simple Application")
+val sc = new SparkContext(conf)
+val logData = sc.textFile(logFile, 2).cache()
+val numAs = logData.filter(line =&gt; line.contains("a")).count()
+val numBs = logData.filter(line =&gt; line.contains("b")).count()
+println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
+</code></pre>
 
-<p>For native drawing support, we&#8217;ll install gnuplot.<br/>
-<code>$ brew install gnuplot</code><br/>
-(<strong>Update:</strong> As <em>phseven</em> pointed out, gnuplot will be automatically installed with octave, but in some cases it won&#8217;t support X11.) For such cases, do the following:<br/>
-<code>$ brew uninstall gnuplot</code><br/>
-<code>$ brew install gnuplot --with-x</code></p>
+<p>  }
+}</p>
 
-<h4>9. Setup Octave startup file</h4>
+<p>So far, we haven&#8217;t added Spark to our application. To add Spark library,
+Click File -> Project Structure. Under Libraries, add Java
+and select
+SPARK_FOLDER/spark-1.5.2/assembly/target/scala-2.11/spark-assembly-1.5.2-hadoop2.4.0.jar</p>
 
-<p>Edit your Octave startup file or create a new one:<br/>
-<code>$ vim ~/.octaverc</code> and add the line <code>setenv GNUTERM x11</code>.<br/>
-Don&#8217;t forget to save the file.</p>
+<p>This step may take some time (1-5 mins), while IntelliJ is indexing.</p>
 
-<h4>10. Create a launcher app with Applescript [<em>Optional</em>]</h4>
+<p>6) Final step. Run it!</p>
 
-<p>Open the &#8220;AppleScript Editor&#8221; application and write the following text in the editor window:</p>
+<p>Click Run-> Edit Configuration and click + on the left side, then choose Application.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>tell application "Terminal"
-</span><span class='line'> do script "`which octave`; exit"
-</span><span class='line'>end tell</span></code></pre></td></tr></table></div></figure>
+<p>Paste</p>
 
+<p>-Dspark.master=local to VM option, and get the App name matching your object name (which is MySimpleApp in my case).</p>
 
-<p>Save it as an application &#8216;Octave.app&#8217; and then navigate it to the &#8220;Applications&#8221; folder.</p>
+<p>The application should run fine.
+Now, let&#8217;s debug the application by setting a breakpoint on the filter command.</p>
 
-<p>Now for the ultimate fix: Reboot your machine!!! Yep, until you restart your Mac, Octave will be unable to launch XQuartz on its own, and you won&#8217;t be able to plot anything.</p>
+<p>When you reach the breakpoint and Step Into, IntelliJ would complain about Sources not found
+and show options to Download or Attach Sources</p>
 
-<p>Once you&#8217;re back in, open the terminal, fire up Octave, and plot a <em>sombrero()</em>.<strong> You&#8217;re all set!!!</strong></p>
+<p>Since, we already have spark source code downloaded, we can simply attach them.
+Select Attach Sources and select the SPARK_FOLDER
+Click OK to add all sources for all folders in SPARK_FOLDER.</p>
+
+<p>Again, IntelliJ may take some time (1-5 mins) to index all the sources we just added.
+Once the indexing is completed, you can resume the debugging and everything should work smoothly.</p>
+
+<p>Other articles -
+[SBT-based Scala project, with SBT and Scala plugins installed on IntelliJ]
+(https://www.linkedin.com/pulse/develop-apache-spark-apps-intellij-idea-windows-os-samuel-yee)</p>
+
+<p>Helpful
+http://hackers-duffers.logdown.com/posts/245018-configuring-spark-with-intellij</p>
+
+<p>http://www.sparktutorials.net/building-apache-spark-on-your-local-machine</p>
+
+<p>Tried this link, but many issues
+http://kylinx.com/spark/Debug-Spark-in-IntelliJ.htm</p>
+
+<p>Apache Spark Dev list
+http://apache-spark-developers-list.1001551.n3.nabble.com/Intro-to-using-IntelliJ-to-debug-SPARK-1-1-Apps-with-mvn-sbt-for-beginners-td9429.html
+and
+http://apache-spark-developers-list.1001551.n3.nabble.com/Spark-1-5-0-setting-up-debug-env-td14056.html</p>
+
+<p>Another post (not tried yet, but could be helpful)
+http://danosipov.com/?p=779</p>
+
+<p>Kind of similar to my approach, but missing some steps
+https://docs.sigmoidanalytics.com/index.php/Step_by_Step_instructions_on_how_to_build_Spark_App_with_IntelliJ_IDEA</p>
+
+<p>Seems relevant, but not so much helpful
+https://github.com/mesos/spark/wiki/Spark-Debugger</p>
+
+<p>Mention this link at the end - Useful developer tools - Spark
+https://cwiki.apache.org/confluence/display/SPARK/Useful+Developer+Tools#UsefulDeveloperTools-IDESetup</p>
+
+<p>After finishing the article, post answers to the questions:
+http://stackoverflow.com/search?q=debug+spark</p>
 </div>
 
 
@@ -247,12 +293,12 @@ Don&#8217;t forget to save the file.</p>
   
 
 
-<time datetime="2014-01-21T21:25:00-05:00" pubdate data-updated="true">Jan 21<span>st</span>, 2014</time>
+<time datetime="2015-12-07T22:21:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/how-to-install/'>How to Install</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>, <a class='category' href='/blog/categories/octave/'>Octave</a>
+    <a class='category' href='/blog/categories/apache-spark/'>Apache Spark</a>, <a class='category' href='/blog/categories/intellij-idea/'>IntelliJ IDEA</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>
   
 </span>
 
@@ -261,7 +307,7 @@ Don&#8217;t forget to save the file.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/" data-via="JatinGanhotra" data-counturl="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/" data-via="JatinGanhotra" data-counturl="http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -274,10 +320,8 @@ Don&#8217;t forget to save the file.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/" title="Previous Post: Comparison is always false due to limited range of data type">&laquo; Comparison is always false due to limited range of data type</a>
+        <a class="basic-alignment left" href="/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/" title="Previous Post: Installing Octave on OS X 10.9 Mavericks">&laquo; Installing Octave on OS X 10.9 Mavericks</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/" title="Next Post: Run &amp; Debug Spark apps in IntelliJ IDEA">Run &amp; Debug Spark apps in IntelliJ IDEA &raquo;</a>
       
     </p>
   </footer>
@@ -377,8 +421,8 @@ Don&#8217;t forget to save the file.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/';
-        var disqus_url = 'http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/';
+        var disqus_identifier = 'http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/';
+        var disqus_url = 'http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/';
         var disqus_script = 'embed.js';
       
     (function () {

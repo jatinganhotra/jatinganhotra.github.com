@@ -4,7 +4,7 @@
   <title><![CDATA[blog@jatinganhotra]]></title>
   <link href="http://jatinganhotra.com/atom.xml" rel="self"/>
   <link href="http://jatinganhotra.com/"/>
-  <updated>2015-01-19T15:12:13-06:00</updated>
+  <updated>2016-06-19T04:00:09-04:00</updated>
   <id>http://jatinganhotra.com/</id>
   <author>
     <name><![CDATA[Jatin Ganhotra]]></name>
@@ -14,9 +14,172 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Run &amp; Debug Spark apps in IntelliJ IDEA]]></title>
+    <link href="http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea/"/>
+    <updated>2015-12-07T22:21:00-05:00</updated>
+    <id>http://jatinganhotra.com/blog/2015/12/07/run-and-debug-spark-apps-in-intellij-idea</id>
+    <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
+
+<div>
+<span style="float:right;" id="google_translate_element"></span>
+<span style="float:right; font-family: 'Coming Soon', cursive;">Having trouble viewing in English, Choose Your Language : &nbsp;&nbsp;&nbsp;</span>
+</div>
+
+
+<BR>&nbsp;<BR>
+
+
+<p>For my current research project, I needed to debug Spark core source code, to delve deeper
+into the code and figure out the reason behind the unexpected experimental results.</p>
+
+<p>I spent days trying to setup everything to debug my application, which ideally should have been
+an hour or 2, considering that Spark is one of the <a href="https://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces50">most active community open-source project on Apache</a>
+right now.</p>
+
+<p>I did find some posts and articles on the Internet and Spark user+dev mailing lists, but they were outdated, didn&#8217;t account for all potential issues and didn&#8217;t cover much details.</p>
+
+<p>I finally got everything up and running, so here&#8217;s a post listing down exact steps to get everything setup
+for debugging Spark source code.</p>
+
+<p>This post will cover setting up the environment for Mac OS X, but the same steps should work for any UNIX system.</p>
+
+<h4>1. Install the Xcode Command Line Tools</h4>
+
+<p>Installing command line tools has changed slightly than previous versions of MAC OS. Now you don&#8217;t have to install Xcode , you can install Command Line Tools stand alone.<br/>
+Type <code>xcode-select --install</code> in terminal and choose <em>Install</em> option from the pop-up.<br/>
+This may take some time depending on your Internet connection.</p>
+
+<h4>2. Install Homebrew</h4>
+
+<p>I&#8217;m assuming you know about Homebrew, but if you don&#8217;t do yourself a favor, my friend and install it by following <a href="https://github.com/mxcl/homebrew/wiki/installation">Homebrew&#8217;s installation instructions</a>.</p>
+
+<h4>3. Install Scala</h4>
+
+<p>In Terminal enter</p>
+
+<p>brew install scala &#8211;with-docs</p>
+
+<h4>4. Download and Install IntelliJ IDEA</h4>
+
+<p>Hop-over to the JetBrains website and download <a href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA 15</a> (the latest version right now). The Community Edition is free and the same steps should work for any other version too.
+On the first-run, IntelliJ might ask for setting up the Scala featured plugin. Ignore that option, as we will link IntelliJ to our Mac OS&#8217;s Homebrew scala installation.</p>
+
+<h4>5. Download and Building Spark</h4>
+
+<p>Download the Spark Source Code from the <a href="http://spark.apache.org/downloads.html">Spark website</a> - latest version - Spark 1.5.2 (Nov 09 2015).</p>
+
+<p>To produce a Spark package compiled with Scala 2.11, use the -Dscala-2.11 property as mentioned <a href="http://spark.apache.org/docs/latest/building-spark.html#building-for-scala-211">here</a>:</p>
+
+<p>./dev/change-scala-version.sh 2.11
+mvn -Pyarn -Phadoop-2.4 -Dscala-2.11 -DskipTests clean package</p>
+
+<p>If you get the error -
+org.apache.spark.SparkException: An application name must be set in your configuration
+val configuration = new SparkConf()</p>
+
+<pre><code>            .setAppName("Your Application Name")
+            .setMaster("local");
+</code></pre>
+
+<p>Install Scala &amp; SBT plugins for IntelliJ before anything</p>
+
+<p>When creating your application, follow these steps :-
+1. Create New project
+2. Choose Scala - Scala (Simple module with attached Scala SDK) (Don&#8217;t use SBT)
+3. In project SDK, choose New JDK and select the path to the JAVA JDK Home
+e.g. /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
+4. In Scala SDK, choose Create - Browse and select the path to Scala SDK
+/usr/local/Cellar/scala/2.11.7/libexec</p>
+
+<p>Create New Scala script under src folder named SimpleApp.scala and
+paste the following code - taken from <a href="http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications">Spark QuickStart guide</a></p>
+
+<p>/<em> SimpleApp.scala </em>/
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext._
+import org.apache.spark.SparkConf</p>
+
+<p>object SimpleApp {
+  def main(args: Array[String]) {</p>
+
+<pre><code>val logFile = "YOUR_SPARK_HOME/README.md" // Should be some file on your system
+val conf = new SparkConf().setAppName("Simple Application")
+val sc = new SparkContext(conf)
+val logData = sc.textFile(logFile, 2).cache()
+val numAs = logData.filter(line =&gt; line.contains("a")).count()
+val numBs = logData.filter(line =&gt; line.contains("b")).count()
+println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>So far, we haven&#8217;t added Spark to our application. To add Spark library,
+Click File -> Project Structure. Under Libraries, add Java
+and select
+SPARK_FOLDER/spark-1.5.2/assembly/target/scala-2.11/spark-assembly-1.5.2-hadoop2.4.0.jar</p>
+
+<p>This step may take some time (1-5 mins), while IntelliJ is indexing.</p>
+
+<p>6) Final step. Run it!</p>
+
+<p>Click Run-> Edit Configuration and click + on the left side, then choose Application.</p>
+
+<p>Paste</p>
+
+<p>-Dspark.master=local to VM option, and get the App name matching your object name (which is MySimpleApp in my case).</p>
+
+<p>The application should run fine.
+Now, let&#8217;s debug the application by setting a breakpoint on the filter command.</p>
+
+<p>When you reach the breakpoint and Step Into, IntelliJ would complain about Sources not found
+and show options to Download or Attach Sources</p>
+
+<p>Since, we already have spark source code downloaded, we can simply attach them.
+Select Attach Sources and select the SPARK_FOLDER
+Click OK to add all sources for all folders in SPARK_FOLDER.</p>
+
+<p>Again, IntelliJ may take some time (1-5 mins) to index all the sources we just added.
+Once the indexing is completed, you can resume the debugging and everything should work smoothly.</p>
+
+<p>Other articles -
+[SBT-based Scala project, with SBT and Scala plugins installed on IntelliJ]
+(https://www.linkedin.com/pulse/develop-apache-spark-apps-intellij-idea-windows-os-samuel-yee)</p>
+
+<p>Helpful
+http://hackers-duffers.logdown.com/posts/245018-configuring-spark-with-intellij</p>
+
+<p>http://www.sparktutorials.net/building-apache-spark-on-your-local-machine</p>
+
+<p>Tried this link, but many issues
+http://kylinx.com/spark/Debug-Spark-in-IntelliJ.htm</p>
+
+<p>Apache Spark Dev list
+http://apache-spark-developers-list.1001551.n3.nabble.com/Intro-to-using-IntelliJ-to-debug-SPARK-1-1-Apps-with-mvn-sbt-for-beginners-td9429.html
+and
+http://apache-spark-developers-list.1001551.n3.nabble.com/Spark-1-5-0-setting-up-debug-env-td14056.html</p>
+
+<p>Another post (not tried yet, but could be helpful)
+http://danosipov.com/?p=779</p>
+
+<p>Kind of similar to my approach, but missing some steps
+https://docs.sigmoidanalytics.com/index.php/Step_by_Step_instructions_on_how_to_build_Spark_App_with_IntelliJ_IDEA</p>
+
+<p>Seems relevant, but not so much helpful
+https://github.com/mesos/spark/wiki/Spark-Debugger</p>
+
+<p>Mention this link at the end - Useful developer tools - Spark
+https://cwiki.apache.org/confluence/display/SPARK/Useful+Developer+Tools#UsefulDeveloperTools-IDESetup</p>
+
+<p>After finishing the article, post answers to the questions:
+http://stackoverflow.com/search?q=debug+spark</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Installing Octave on OS X 10.9 Mavericks]]></title>
     <link href="http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks/"/>
-    <updated>2014-01-21T21:25:00-06:00</updated>
+    <updated>2014-01-21T21:25:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2014/01/21/installing-octave-on-os-x-10-dot-9-mavericks</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -133,7 +296,7 @@ Don&#8217;t forget to save the file.</p>
   <entry>
     <title type="html"><![CDATA[Comparison is always false due to limited range of data type]]></title>
     <link href="http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type/"/>
-    <updated>2013-07-21T21:17:00-05:00</updated>
+    <updated>2013-07-21T21:17:00-04:00</updated>
     <id>http://jatinganhotra.com/blog/2013/07/21/comparison-is-always-false-due-to-limited-range-of-data-type</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -188,7 +351,7 @@ Hence, the comparison would be always false when run on a 64-bit machine.</p>
   <entry>
     <title type="html"><![CDATA[Keyboard Review - Microsoft Natural Ergonomic Keyboard 4000]]></title>
     <link href="http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000/"/>
-    <updated>2013-06-29T11:05:00-05:00</updated>
+    <updated>2013-06-29T11:05:00-04:00</updated>
     <id>http://jatinganhotra.com/blog/2013/06/29/keyboard-review-microsoft-natural-ergonomic-keyboard-4000</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -229,7 +392,7 @@ The <em>reverse slope</em> helps your hand and wrist rest more naturally. You ca
   <entry>
     <title type="html"><![CDATA[From Disqus to IntenseDebate & back again]]></title>
     <link href="http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again/"/>
-    <updated>2013-03-23T13:48:00-05:00</updated>
+    <updated>2013-03-23T13:48:00-04:00</updated>
     <id>http://jatinganhotra.com/blog/2013/03/23/from-disqus-to-intensedebate-and-back-again</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -305,7 +468,7 @@ plan to switch over to <strong>IntenseDebate</strong>, if the login options are 
   <entry>
     <title type="html"><![CDATA[Concurrent and Sequential statements in Verilog]]></title>
     <link href="http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog/"/>
-    <updated>2013-02-24T22:32:00-06:00</updated>
+    <updated>2013-02-24T22:32:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2013/02/24/concurrent-and-sequential-statements-in-verilog</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -354,7 +517,7 @@ Note that multiple assignment of values is allowed inside a procedural block.</p
   <entry>
     <title type="html"><![CDATA[C++ - Variable Declaration in 'if' expression]]></title>
     <link href="http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression/"/>
-    <updated>2013-02-09T09:16:00-06:00</updated>
+    <updated>2013-02-09T09:16:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2013/02/09/c-plus-plus-variable-declaration-in-if-expression</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -450,7 +613,7 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
   <entry>
     <title type="html"><![CDATA[Add Google Website Translator to your Octopress Blog]]></title>
     <link href="http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog/"/>
-    <updated>2012-12-26T20:06:00-06:00</updated>
+    <updated>2012-12-26T20:06:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2012/12/26/add-google-website-translator-to-your-octopress-blog</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -533,7 +696,7 @@ The syntax specification in 6.4/1 gives the following for selection condition:</
   <entry>
     <title type="html"><![CDATA[Forward Class Declaration in C++]]></title>
     <link href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/"/>
-    <updated>2012-11-25T21:00:00-06:00</updated>
+    <updated>2012-11-25T21:00:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -639,7 +802,7 @@ class Master
   <entry>
     <title type="html"><![CDATA[Why use GIT and hang CVS?]]></title>
     <link href="http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git/"/>
-    <updated>2012-11-03T10:20:00-05:00</updated>
+    <updated>2012-11-03T10:20:00-04:00</updated>
     <id>http://jatinganhotra.com/blog/2012/11/03/why-hang-cvs-and-start-using-git</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -683,7 +846,7 @@ It covers various aspects where <a href="http://en.wikipedia.org/wiki/Concurrent
   <entry>
     <title type="html"><![CDATA[Integer Limits and Types In C/C++]]></title>
     <link href="http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp/"/>
-    <updated>2012-08-25T10:20:00-05:00</updated>
+    <updated>2012-08-25T10:20:00-04:00</updated>
     <id>http://jatinganhotra.com/blog/2012/08/25/integer-limits-and-types-in-c-cpp</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
@@ -748,7 +911,7 @@ For more information on this, refer <a href="http://en.wikipedia.org/wiki/Inttyp
   <entry>
     <title type="html"><![CDATA[Install MongoDB on Ubuntu]]></title>
     <link href="http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu/"/>
-    <updated>2011-11-15T01:33:00-06:00</updated>
+    <updated>2011-11-15T01:33:00-05:00</updated>
     <id>http://jatinganhotra.com/blog/2011/11/15/install-mongodb-on-ubuntu</id>
     <content type="html"><![CDATA[<p><link href='http://fonts.googleapis.com/css?family=Coming+Soon&subset=latin,latin-ext' rel='stylesheet' type='text/css'></p>
 
